@@ -28,7 +28,7 @@ export default function Index({ preview, allPosts, heroText }) {
               excerpt={heroPost.excerpt}
             />
           )}
-          <h1>{JSON.stringify(heroText)}</h1>
+          <h1>xxx{JSON.stringify(heroText)}</h1>
           {morePosts.length > 0 && <MoreStories posts={morePosts} />}
         </Container>
       </Layout>
