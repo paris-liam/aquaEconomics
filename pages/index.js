@@ -1,45 +1,25 @@
 import Container from '../components/container'
-import MoreStories from '../components/more-stories'
-import HeroPost from '../components/hero-post'
-import Intro from '../components/intro'
 import Layout from '../components/layout'
+import { WaveHero } from '../components/wave-hero'
 import { getAllPostsForHome, getHeroText } from '../lib/api'
-import Head from 'next/head'
-import { CMS_NAME } from '../lib/constants'
+import Header from '../components/header'
 
-export default function Index({ preview, allPosts, heroText }) {
+export default function Index({ allPosts, heroText }) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
     <>
-      <Layout preview={preview}>
-        <Head>
-          <title>{`Next.js Blog Example with ${CMS_NAME}`}</title>
-        </Head>
-        <Container>
-          <Intro />
-          {heroPost && (
-            <HeroPost
-              title={heroPost.title}
-              coverImage={heroPost.coverImage}
-              date={heroPost.date}
-              author={heroPost.author}
-              slug={heroPost.slug}
-              excerpt={heroPost.excerpt}
-            />
-          )}
-          <h1>xxx{JSON.stringify(heroText)}</h1>
-          {morePosts.length > 0 && <MoreStories posts={morePosts} />}
-        </Container>
+      <Layout>
+          <WaveHero></WaveHero>
       </Layout>
     </>
   )
 }
 
-export async function getStaticProps({ preview = false }) {
-  const allPosts = (await getAllPostsForHome(preview)) ?? []
-  const heroText = (await getHeroText(preview)) ?? {}  
+export async function getStaticProps() {
+  const allPosts = (await getAllPostsForHome()) ?? []
+  const heroText = (await getHeroText()) ?? {}  
   return {
-    props: { preview, allPosts, heroText },
+    props: { allPosts, heroText },
   }
 }

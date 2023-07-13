@@ -5,6 +5,10 @@ module.exports = {
     './components/**/*.{js,ts,jsx,tsx}',
   ],
   theme: {
+    fontFamily: {
+      'roboto': ['var(--font-roboto)'],
+      'sans': ['var(--font-open-sans)']
+    },
     extend: {
       colors: {
         'accent-1': '#FAFAFA',
@@ -12,6 +16,8 @@ module.exports = {
         'accent-7': '#333',
         success: '#0070f3',
         cyan: '#79FFE1',
+        'aqua-green': '#1FB25A', 
+        'aqua-blue': '#1AB7EA'
       },
       spacing: {
         28: '7rem',

@@ -1,30 +1,39 @@
 import Container from './container'
 import { EXAMPLE_PATH } from '../lib/constants'
+import { Logo } from '../lib/logo'
+import { navLinkClasses } from './header'
+
+export const footerNavLinkClasses = `block px-4 py-2 text-xs font-sans hover:text-aqua-green`
 
 export default function Footer() {
   return (
-    <footer className="bg-accent-1 border-t border-accent-2">
-      <Container>
-        <div className="py-28 flex flex-col lg:flex-row items-center">
-          <h3 className="text-4xl lg:text-5xl font-bold tracking-tighter leading-tight text-center lg:text-left mb-10 lg:mb-0 lg:pr-4 lg:w-1/2">
-            Statically Generated with Next.js.
-          </h3>
-          <div className="flex flex-col lg:flex-row justify-center items-center lg:pl-4 lg:w-1/2">
-            <a
-              href="https://nextjs.org/docs/basic-features/pages"
-              className="mx-3 bg-black hover:bg-white hover:text-black border border-black text-white font-bold py-3 px-12 lg:px-8 duration-200 transition-colors mb-6 lg:mb-0"
-            >
-              Read Documentation
-            </a>
-            <a
-              href={`https://github.com/vercel/next.js/tree/canary/examples/${EXAMPLE_PATH}`}
-              className="mx-3 font-bold hover:underline"
-            >
-              View on GitHub
-            </a>
-          </div>
+    <footer className="bg-white border-t border-accent-2">
+        <div className="py-14 flex flex-col space-evenly">
+          <div className='flex justify-center'><Logo></Logo></div>
+          <ul className="py-5 flex flex-row justify-center lg:pl-4">
+            <li>
+              <a className={`${footerNavLinkClasses} md:text-lg`} href="about">About Us</a>
+            </li>
+            <li>
+              <a className={`${footerNavLinkClasses} md:text-lg`} href="projects">Projects</a>
+            </li>
+            <li>
+              <a className={`${footerNavLinkClasses} md:text-lg`} href="services">Services</a>
+            </li>
+            <li><a className={`${footerNavLinkClasses} md:text-lg`} href="contact">Contact Us</a></li>
+          </ul>
+          <ul className="py-5 flex flex-row justify-center">
+            <li>
+              <a className={`${footerNavLinkClasses} text-[.5rem] md:text-sm`} href="tel:111-1111">+1 (111) 111-1111</a>
+            </li>
+            <li>
+              <a className={`${footerNavLinkClasses} text-[.5rem] md:text-sm`} href="mailto:aqua@aquaeconomics.com">aqua@aquaeconomics.com</a>
+            </li>
+            <li>
+              <span className={`${footerNavLinkClasses} text-[.5rem] md:text-sm`}>address address address</span>
+            </li>
+          </ul>
         </div>
-      </Container>
     </footer>
   )
 }
