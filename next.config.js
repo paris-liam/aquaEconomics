@@ -3,4 +3,7 @@ module.exports = {
   images: {
     loader: 'custom',
   },
+  compiler: {
+    styledComponents: true
+  }
 }

@@ -1,21 +1,21 @@
 import styled from 'styled-components'
 
 const Ocean = styled.div`
-    height: 5%;
-    width:100%;
-    position:absolute;
-    bottom:0;
-    left:0;
+  height: 5%;
+  width:100%;
+  position: absolute;
+  bottom:0;
+  left:0;
 `
 
 const Wave = styled.div`
-    background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg) repeat-x; 
-    position: absolute;
-    top: -198px;
-    width: 6400px;
-    height: 198px;
-    animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
-    transform: translate3d(0, 0, 0);
+  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg') repeat-x; 
+  position: absolute;
+  top: -198px;
+  width: 6400px;
+  height: 198px;
+  animation: wave 7s cubic-bezier( 0.36, 0.45, 0.63, 0.53) infinite;
+  transform: translate3d(0, 0, 0);
   
   &:nth-of-type(2) {
     top: -175px;
@@ -39,15 +39,12 @@ const Wave = styled.div`
     50% {
       transform: translate3d(0,5px,0);
     }
-  }`
+  }
+`
 
-export const WaveHero = () => {
-    
-
-    return <>
-        <Ocean>
-        <Wave></Wave>
-        <Wave></Wave>
-        </Ocean>
-    </>
-}
+export const WaveBackground = () => (
+    <Ocean>
+      <Wave></Wave>
+      <Wave></Wave>
+    </Ocean>
+)

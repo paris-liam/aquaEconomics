@@ -1,16 +1,43 @@
-import Container from '../components/container'
 import Layout from '../components/layout'
-import { WaveHero } from '../components/wave-hero'
+import { Hero } from '../components/hero'
 import { getAllPostsForHome, getHeroText } from '../lib/api'
-import Header from '../components/header'
-
-export default function Index({ allPosts, heroText }) {
+import {WaveBackground} from '../components/WaveBackground'
+import test from '../public/test.jpeg'
+import Image from 'next/image'
+import ContentfulImage from '../components/contentful-image'
+export default function Index({ allPosts }) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
-          <WaveHero></WaveHero>
+          <Hero background={<WaveBackground></WaveBackground>}>
+            <div className='flex w-full h-auto flex-col justify-evenly items-center'>
+              <h1 className='text-6xl text-aqua-green uppercase'>title</h1>
+              <div className='flex flex-row justify-around'>
+                <ContentfulImage
+                className='margin-x:8'
+                  src="/test.jpeg"
+                  width={400}
+                  height={400}
+                  alt="Picture of the author"
+                />
+                              <ContentfulImage
+                  src="/test.jpeg"
+                  width={400}
+                  height={400}
+                  alt="Picture of the author"
+                />
+                              <ContentfulImage
+                  src="/test.jpeg"
+                  width={400}
+                  height={400}
+                  alt="Picture of the author"
+                />
+              </div>
+              <div>button</div>
+            </div>
+          </Hero>
       </Layout>
     </>
   )
