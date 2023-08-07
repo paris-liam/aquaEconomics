@@ -10,6 +10,9 @@ module.exports = {
       'sans': ['var(--font-open-sans)']
     },
     extend: {
+      gridTemplateRows: {
+        '8': 'repeat(8, minmax(0, 1fr))',
+      },
       colors: {
         'accent-1': '#FAFAFA',
         'accent-2': '#EAEAEA',
@@ -42,7 +45,9 @@ module.exports = {
         '11': '3rem'
       },
       height: {
-        '75vh': '75vh'
+        '65vh': '65vh',
+        '75vh': '75vh',
+        '90vh': '90vh'
       }
     },
   },

@@ -1,62 +1,49 @@
 import Layout from '../components/layout'
-import { Hero } from '../components/hero'
-import { getAllPostsForHome, getHeroText } from '../lib/api'
-import { WaveBackground } from '../components/WaveBackground'
-import test from '../public/test.jpeg'
-import Image from 'next/image'
-import ContentfulImage from '../components/contentful-image'
-export default function Index({ allPosts }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+import { getHighlightedProjects, getAllServiceCategories, getSlideInfo, getAllServices } from '../lib/api'
+import { useRef } from 'react'
+import { ABOUT_SLIDE_CONTENT_ID, CONTACT_SLIDE_CONTENT_ID, LANDING_SLIDE_CONTENT_ID, PROJECTS_SLIDE_CONTENT_ID, SERVICES_SLIDE_CONTENT_ID, aquaBlueHex, aquaGreenHex, executeScroll } from '../lib/constants'
+import { AboutSlide } from '../components/Slides/AboutSlide'
+import { LandingSlide } from '../components/Slides/LandingSlide'
+import { ServicesSlide } from '../components/Slides/ServicesSlide'
+import { ProjectsSlide } from '../components/Slides/ProjectsSlide'
+import { ContactSlide } from '../components/Slides/ContactSlide'
+
+
+export default function Index({ landingSlideInfo,
+  aboutSlideInfo,
+  projectSlideInfo,
+  servicesSlideInfo,
+  contactSlideInfo,
+  highlightedProjects,
+  serviceCategories  }) {
+  const aboutSlide = useRef(null)
   return (
-    <>
-      <Layout>
-        <Hero background={<WaveBackground></WaveBackground>}>
-          <div className='flex w-full h-auto flex-col justify-evenly items-center'>
-            <h1 className='text-2xl md:text-4xl text-aqua-green text-center uppercase m-5 md:m-10  w-4/5 lg:w-3/4  leading-8 md:leading-11'>Your Philadelphia Solution for Stormwater Cost Reduction,
-              Site Engineering, Surveying, Planning and Zoning</h1>
-            <div className='flex flex-row justify-around'>
-              <ContentfulImage
-                className='hidden md:block w-4/5 md:w-1/3 lg:w-1/4'
-                src="/test.jpeg"
-                width={400}
-                height={400}
-                alt="Picture of the author"
-              />
-              <ContentfulImage
-                className='hidden w-4/5 md:block md:w-1/3 lg:w-1/4'
-                src="/test.jpeg"
-                width={400}
-                height={400}
-                alt="Picture of the author"
-              />
-              <ContentfulImage
-                className='hidden w-4/5 md:block md:w-1/3 lg:w-1/4'
-                src="/test.jpeg"
-                width={400}
-                height={400}
-                alt="Picture of the author"
-              />
-            </div>
-            <div>
-              <button className='text-white font-sans font-bold p-5 my-10 bg-aqua-green'>
-                Learn More
-                <svg className='ml-2 inline-block' width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M17.6754 14.4753L16.6307 13.4507L13.2255 16.9226L13.1606 4.87892L11.6955 4.89945L11.7604 16.9432L8.31824 13.5671L7.28478 14.6208L12.5081 19.7438L17.6754 14.4753Z" fill="white" />
-                </svg>
-              </button>
-            </div>
-          </div>
-        </Hero>
-      </Layout>
-    </>
+    <Layout>
+      <LandingSlide  slideInfo={landingSlideInfo} scrollRef={aboutSlide}></LandingSlide>
+      <span ref={aboutSlide}><AboutSlide slideInfo={aboutSlideInfo} ></AboutSlide></span>
+      <ServicesSlide serviceCategories={serviceCategories} slideInfo={servicesSlideInfo} ></ServicesSlide>
+      <ProjectsSlide slideInfo={projectSlideInfo} highlightedProjects={highlightedProjects}></ProjectsSlide>
+      <ContactSlide slideInfo={contactSlideInfo} ></ContactSlide>
+    </Layout>
   )
 }
 
 export async function getStaticProps() {
-  const allPosts = (await getAllPostsForHome()) ?? []
-  const heroText = (await getHeroText()) ?? {}
+  const landingSlideInfo = (await getSlideInfo(LANDING_SLIDE_CONTENT_ID)) ?? {}
+  const aboutSlideInfo = (await getSlideInfo(ABOUT_SLIDE_CONTENT_ID)) ?? {}
+  const projectSlideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
+  const servicesSlideInfo = (await getSlideInfo(SERVICES_SLIDE_CONTENT_ID)) ?? {}
+  const contactSlideInfo = (await getSlideInfo(CONTACT_SLIDE_CONTENT_ID)) ?? {}
+  const highlightedProjects = (await getHighlightedProjects()) ?? {}
+  const serviceCategories = (await getAllServiceCategories()) ?? {}
   return {
-    props: { allPosts, heroText },
+    props: { landingSlideInfo,
+      aboutSlideInfo,
+      projectSlideInfo,
+      servicesSlideInfo,
+      contactSlideInfo,
+      highlightedProjects,
+      serviceCategories,
+    },
   }
 }

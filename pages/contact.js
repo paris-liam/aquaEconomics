@@ -1,14 +1,14 @@
 import Layout from '../components/layout'
 import { getAllPostsForHome, getHeroText } from '../lib/api'
-import {AboutSlide} from '../components/Slides/AboutSlide'
+import { ContactSlide } from '../components/Slides/ContactSlide'
 
-export default function About({ allPosts, heroText }) {
+export default function Contact({ allPosts, heroText }) {
   const heroPost = allPosts[0]
   const morePosts = allPosts.slice(1)
   return (
     <>
       <Layout>
-          <AboutSlide></AboutSlide>
+          <ContactSlide></ContactSlide>
       </Layout>
     </>
   )

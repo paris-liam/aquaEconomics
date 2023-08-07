@@ -28,20 +28,10 @@ export const Header = () => {
   return (
     <header ref={headerRef}>
       <nav
-        className="
-          flex flex-wrap
-          items-center
-          justify-between
-          w-full
-          py-6
-          md:px-30
-          px-6
-          text-lg text-gray-700
-          bg-white
-        "
+        className="flex flex-wrap items-center justify-between w-full px-6 py-6 text-lg text-gray-700 bg-white  md:px-30"
       >
         <div>
-          <a href="#">
+          <a href="/">
             <Logo></Logo>
           </a>
         </div>
@@ -49,7 +39,7 @@ export const Header = () => {
         <svg
           xmlns="http://www.w3.org/2000/svg"
           id="menu-button"
-          className="h-6 w-6 cursor-pointer md:hidden block"
+          className="block w-6 h-6 cursor-pointer md:hidden"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -65,13 +55,7 @@ export const Header = () => {
 
         <div style={{'height': !isMobile ? '100%' : (hideNav && isMobile ? '0px' : '13rem')}} className={`transition-all duration-500 overflow-hidden block w-full md:flex md:items-center md:w-auto`} id="menu">
           <ul
-            className="
-              pt-4
-              text-base text-black-700 text-bold
-              md:flex
-              md:justify-between 
-              md:pt-0
-              "
+            className="pt-4 text-base  text-black-700 text-bold md:flex md:justify-between md:pt-0"
           >
             <li>
               <a className={headerNavLinkClasses} href="about">About Us</a>
