@@ -1,6 +1,6 @@
 import '../styles/index.css'
-import {Roboto_Condensed} from '@next/font/google'
-import { Open_Sans } from '@next/font/google'
+import {Roboto_Condensed} from "next/font/google"
+import { Open_Sans } from "next/font/google"
 
 const roboto = Roboto_Condensed({
   subsets:['latin'],

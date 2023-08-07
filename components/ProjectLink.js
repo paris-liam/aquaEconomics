@@ -9,7 +9,7 @@ export const ProjectLink = ({className, picture, title, link}) => (
     alt="Picture of the author"
   />
     <h4 >{title}</h4>
-    <div class='z-20 absolute top-0 left-0 right-0 bottom-0 bg-aqua-blue opacity-0 hover:opacity-60'></div>
+    <div className='z-20 absolute top-0 left-0 right-0 bottom-0 bg-aqua-blue opacity-0 hover:opacity-60'></div>
   </a>
 
   )

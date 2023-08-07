@@ -1,0 +1,154 @@
+/*
+    reverses tailwind reset for rich text components that cannot have classes added
+*/
+
+.unreset {
+    a {
+      @apply text-blue-700 underline;
+    }
+    p {
+      @apply my-4;
+    }
+  
+    blockquote,
+    figure {
+      @apply mx-10 my-4;
+    }
+  
+    hr {
+      @apply border;
+    }
+  
+    h1 {
+      @apply my-2 text-4xl font-bold;
+    }
+  
+    h2 {
+      @apply my-3 text-2xl font-bold;
+    }
+  
+    h3 {
+      @apply my-4 text-lg font-bold;
+    }
+  
+    h4 {
+      @apply my-5 text-base font-bold;
+    }
+  
+    h5 {
+      @apply my-6 text-sm font-bold;
+    }
+  
+    h6 {
+      @apply my-10 text-xs font-bold;
+    }
+  
+    article,
+    aside,
+    nav,
+    section {
+      h1 {
+        @apply my-3 text-2xl font-bold;
+      }
+  
+      article,
+      aside,
+      nav,
+      section {
+        h1 {
+          @apply my-4 text-lg font-bold;
+        }
+  
+        article,
+        aside,
+        nav,
+        section {
+          h1 {
+            @apply my-5 text-base font-bold;
+          }
+  
+          article,
+          aside,
+          nav,
+          section {
+            h1 {
+              @apply my-6 text-sm font-bold;
+            }
+  
+            article,
+            aside,
+            nav,
+            section {
+              h1 {
+                @apply my-10 text-xs font-bold;
+              }
+            }
+          }
+        }
+      }
+    }
+  
+    ul,
+    menu {
+      @apply pl-10 my-4 list-disc;
+    }
+  
+    li > p {
+      @apply my-0;
+    }
+  
+    ol {
+      @apply pl-10 my-4 list-decimal;
+    }
+  
+    ul,
+    ol {
+      ul {
+        list-style-type: circle;
+      }
+  
+      ul,
+      ol {
+        ul {
+          list-style-type: square;
+        }
+      }
+    }
+  
+    dd {
+      @apply pl-10;
+    }
+  
+    dl {
+      @apply my-4;
+    }
+  
+    ul,
+    ol,
+    menu,
+    dl {
+      ul,
+      ol,
+      menu,
+      dl {
+        margin: 0;
+      }
+    }
+  
+    legend {
+      @apply px-1 py-0;
+    }
+  
+    fieldset {
+      @apply px-1 pt-0 pb-2 mx-1 my-0;
+    }
+  
+    b,
+    strong {
+      font-weight: bold;
+    }
+  
+    pre {
+      @apply my-4;
+    }
+  }
