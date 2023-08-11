@@ -1,27 +1,27 @@
-import Container from '../../components/container'
 import Layout from '../../components/layout'
-import { Hero } from '../../components/hero'
-import { getAllPostsForHome, getHeroText } from '../../lib/api'
-import Header from '../../components/header'
 import { ProjectsSlide } from '../../components/Slides/ProjectsSlide'
+import { getHighlightedProjects, getSlideInfo } from '../../lib/api'
+import { PROJECTS_SLIDE_CONTENT_ID } from '../../lib/constants'
 
-export default function ProjectIndex({ allPosts, heroText }) {
-    const heroPost = allPosts[0]
-    const morePosts = allPosts.slice(1)
+export default function ProjectIndex({ projectSlideInfo, highlightedProjects }) {
     return (
       <>
         <Layout>
-            <ProjectsSlide></ProjectsSlide>
+            <ProjectsSlide highlightedProjects={highlightedProjects} slideInfo={projectSlideInfo}></ProjectsSlide>
         </Layout>
       </>
     )
   }
   
   export async function getStaticProps() {
-    const allPosts = (await getAllPostsForHome()) ?? []
-    const heroText = (await getHeroText()) ?? {}  
+    const projectSlideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
+    const highlightedProjects = (await getHighlightedProjects()) ?? {}
+
     return {
-      props: { allPosts, heroText },
+      props: {
+        projectSlideInfo,
+        highlightedProjects
+      }
     }
   }
   

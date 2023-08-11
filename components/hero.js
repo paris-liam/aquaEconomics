@@ -3,7 +3,7 @@ import React from 'react';
 export const Hero = ({ className, children, background, overlayColor }) => {
     
   return (
-    <div className={`relative block w-full overflow-hidden h-75vh md:h-90vh ${className}`}>
+    <div className={`relative block w-full overflow-hidden h-90vh ${className}`}>
       <div className='absolute top-0 z-20 w-full h-full hero-main-text'>
         {children}
       </div>

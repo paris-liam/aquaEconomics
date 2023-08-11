@@ -1,24 +1,53 @@
 
 import ContentfulImage from "../contentful-image";
 import { Hero } from "../hero";
-import { aquaGreenHex } from "../../lib/constants"
+import { aquaGreenHex, aquaBlueHex } from "../../lib/constants"
 import { Card } from '../Card'
+import Survey from "../../lib/svgs/Survey";
+import Pipe from "../../lib/svgs/Pipe";
+import Shovel from "../../lib/svgs/Shovel";
 
-export const ServicesSlide = () => (<Hero className={'md:h-65vh'} overlayColor={'black'} background={<ContentfulImage
+export const ServicesSlide = ({ slideInfo = {}, serviceCategories = [] }) => {
+  const title = slideInfo?.title || ''
+  const backgroundImage = slideInfo?.backgroundImage || {}
+  const categoryOne = serviceCategories[0] || {};
+  const categoryTwo = serviceCategories[1] || {};
+  const categoryThree = serviceCategories[2] || {};
+
+  return (<Hero  overlayColor={'black'} background={<ContentfulImage
     className='object-cover w-full h-full'
-    src="/test.jpeg"
-    width={400}
-    height={400}
-    alt="Picture of the author"
+    src={backgroundImage?.url}
+    width={backgroundImage?.width}
+    height={backgroundImage?.height}
+    alt={backgroundImage?.title}
   />}>
     <div className='flex flex-col w-full h-full'>
-      <h2 className='m-10 text-4xl leading-8 text-white uppercase md:text-6xl'>
-        SERVICES
+      <h2 className='m-10 text-4xl font-bold leading-8 text-center text-white uppercase md:text-left md:text-6xl'>
+        {title}
       </h2>
-      <div className='flex flex-col items-center w-full h-auto m-auto md:flex-row justify-evenly xl:w-4/5'>
-        {<Card theme='white' fill={aquaGreenHex} title='Stormwater Bill Reduction' body='some body will be placed here as i type and type and tpye' link='/about'></Card>}
-        {<Card theme='aquaGreen' fill={'white'} title='Zoning and Division Plans' body='some body will be placed here as i type and type and tpye' link='/about'></Card>}
-        {<Card theme='aquaBlue' title='Land and Survey Engineering' body='some body will be placed here as i type and type and tpye' link='/about'></Card>}
+      <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly xl:w-4/5'>
+        {categoryOne && <Card bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.category} 
+            body={categoryOne.description} 
+            link={`services#${categoryOne.category.trim().split(' ').join('-')}`}
+            icon={<Survey className='w-1/2 h-1/2 md:h-full md:w-full' fill={aquaGreenHex}></Survey>}>
+                            
+            </Card>
+        }
+        {categoryTwo && <Card bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.category} 
+            body={categoryTwo.description} 
+            link={`services#${categoryTwo.category.trim().split(' ').join('-')}`}
+            icon={<Shovel className='w-1/2 h-1/2 md:h-full md:w-full' fill={'white'}></Shovel>}>
+              
+            </Card>
+        }
+        {categoryThree && <Card bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.category} 
+            body={categoryThree.description} 
+            link={`services#${categoryThree.category.trim().split(' ').join('-')}`}
+            icon={<Pipe className='w-1/2 h-1/2 md:h-full md:w-full' fill={'white'}></Pipe>}>
+              
+            </Card>
+        }
       </div>
     </div>
   </Hero>)
+}

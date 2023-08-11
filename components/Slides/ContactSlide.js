@@ -2,16 +2,16 @@ import ContentfulImage from "../contentful-image";
 import { Hero } from "../hero";
 import { aquaBlueHex } from "../../lib/constants"
 
-export const ContactSlide = () => (<Hero overlayColor={aquaBlueHex} background={<ContentfulImage
+export const ContactSlide = ({slideInfo = {}}) => (<Hero overlayColor={aquaBlueHex} background={<ContentfulImage
     className='object-cover w-full h-full'
-    src="/test.jpeg"
-    width={400}
-    height={400}
-    alt="Picture of the author"
+    src={slideInfo?.backgroundImage?.url}
+    width={slideInfo?.backgroundImage?.width}
+    height={slideInfo?.backgroundImage?.height}
+    alt={slideInfo?.backgroundImage?.title}
   />}>
     <div className='flex flex-col items-center w-full h-full'>
       <h2 className='m-auto text-4xl leading-8 text-white uppercase md:text-6xl'>
-        Ready To Make A Change?
+        {slideInfo?.title || ''}
       </h2>
       <form>
         <div><label>Name</label>

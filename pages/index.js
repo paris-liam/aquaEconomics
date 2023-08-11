@@ -1,7 +1,7 @@
 import Layout from '../components/layout'
-import { getHighlightedProjects, getAllServiceCategories, getSlideInfo, getAllServices } from '../lib/api'
+import { getHighlightedProjects, getAllServiceCategories, getSlideInfo } from '../lib/api'
 import { useRef } from 'react'
-import { ABOUT_SLIDE_CONTENT_ID, CONTACT_SLIDE_CONTENT_ID, LANDING_SLIDE_CONTENT_ID, PROJECTS_SLIDE_CONTENT_ID, SERVICES_SLIDE_CONTENT_ID, aquaBlueHex, aquaGreenHex, executeScroll } from '../lib/constants'
+import { ABOUT_SLIDE_CONTENT_ID, CONTACT_SLIDE_CONTENT_ID, LANDING_SLIDE_CONTENT_ID, PROJECTS_SLIDE_CONTENT_ID, SERVICES_SLIDE_CONTENT_ID } from '../lib/constants'
 import { AboutSlide } from '../components/Slides/AboutSlide'
 import { LandingSlide } from '../components/Slides/LandingSlide'
 import { ServicesSlide } from '../components/Slides/ServicesSlide'
@@ -36,7 +36,7 @@ export async function getStaticProps() {
   const contactSlideInfo = (await getSlideInfo(CONTACT_SLIDE_CONTENT_ID)) ?? {}
   const highlightedProjects = (await getHighlightedProjects()) ?? {}
   const serviceCategories = (await getAllServiceCategories()) ?? {}
-  return {
+   return {
     props: { landingSlideInfo,
       aboutSlideInfo,
       projectSlideInfo,

@@ -1,28 +1,12 @@
-import Pipe from "../lib/Pipe"
-import { aquaGreenHex, aquaBlueHex } from "../lib/constants"
+export const Card = ({ icon, title, body, link, bgColor, titleColor, }) => {
+  return (<div style={{ backgroundColor: bgColor }} className='flex flex-col w-1/2 h-auto pl-4 mb-10 md:w-1/4'>
+    <a href={link}>
+      <div>{icon}</div>
 
-export const Card = ({ theme, title, body, link }) => {
-    const themeMap = {
-      'white': {
-        bgColor: 'white',
-        fill: aquaGreenHex,
-        title: aquaGreenHex
-      },
-      'aquaGreen': {
-        bgColor: aquaGreenHex,
-        fill: 'white',
-        title: 'white'
-      },
-      'aquaBlue': {
-        bgColor: aquaBlueHex,
-        fill: 'white',
-        title: 'white'
-      }
-    }
-     return (<div style={{ backgroundColor: themeMap[theme].bgColor }} className='flex flex-col w-1/2 h-auto pl-4 mb-10 md:w-1/4'><a href={link}>
-      {<Pipe className='w-1/2 h-1/2 md:h-auto md:w-auto' fill={themeMap[theme].fill}></Pipe>}
-      <h3 style={{color: themeMap[theme].title }} className='text-2xl text-aqua-green'>{title}</h3>
+      <h3 style={{ color: titleColor }} className='text-2xl text-aqua-green'>{title}</h3>
       <p className='hidden md:block'>{body}</p>
-      <button>Read more ˆ</button>
+      <button>Read more        <svg className='inline-block ml-2' width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M17.6754 14.4753L16.6307 13.4507L13.2255 16.9226L13.1606 4.87892L11.6955 4.89945L11.7604 16.9432L8.31824 13.5671L7.28478 14.6208L12.5081 19.7438L17.6754 14.4753Z" fill="white" />
+      </svg></button>
     </a></div>)
-  }
+}

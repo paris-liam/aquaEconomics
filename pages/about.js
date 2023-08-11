@@ -1,23 +1,24 @@
 import Layout from '../components/layout'
-import { getAllPostsForHome, getHeroText } from '../lib/api'
 import {AboutSlide} from '../components/Slides/AboutSlide'
+import { getSlideInfo } from '../lib/api'
+import { ABOUT_SLIDE_CONTENT_ID } from '../lib/constants'
 
-export default function About({ allPosts, heroText }) {
-  const heroPost = allPosts[0]
-  const morePosts = allPosts.slice(1)
+export default function About({ aboutSlideInfo }) {
   return (
     <>
       <Layout>
-          <AboutSlide></AboutSlide>
+          <AboutSlide slideInfo={aboutSlideInfo}></AboutSlide>
       </Layout>
     </>
   )
 }
 
-export async function getStaticProps() {
-  const allPosts = (await getAllPostsForHome()) ?? []
-  const heroText = (await getHeroText()) ?? {}  
+export async function getStaticProps() { 
+  const aboutSlideInfo = (await getSlideInfo(ABOUT_SLIDE_CONTENT_ID)) ?? {}
+
   return {
-    props: { allPosts, heroText },
-  }
+    props: {
+      aboutSlideInfo
+    }
+  }  
 }
