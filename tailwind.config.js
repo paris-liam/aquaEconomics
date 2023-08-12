@@ -13,6 +13,9 @@ module.exports = {
       gridTemplateRows: {
         '8': 'repeat(8, minmax(0, 1fr))',
       },
+      rotate: {
+        '220': '220deg',
+      },
       colors: {
         'accent-1': '#FAFAFA',
         'accent-2': '#EAEAEA',

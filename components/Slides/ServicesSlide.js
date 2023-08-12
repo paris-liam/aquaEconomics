@@ -25,25 +25,25 @@ export const ServicesSlide = ({ slideInfo = {}, serviceCategories = [] }) => {
       <h2 className='m-10 text-4xl font-bold leading-8 text-center text-white uppercase md:text-left md:text-6xl'>
         {title}
       </h2>
-      <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly xl:w-4/5'>
-        {categoryOne && <Card bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.category} 
+      <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly '>
+        {categoryOne && <Card className={'service-card'} bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.category} 
             body={categoryOne.description} 
             link={`services#${categoryOne.category.trim().split(' ').join('-')}`}
-            icon={<Survey className='w-1/2 h-1/2 md:h-full md:w-full' fill={aquaGreenHex}></Survey>}>
+            icon={<Survey className='w-full h-full' fill={aquaGreenHex}></Survey>}>
                             
             </Card>
         }
-        {categoryTwo && <Card bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.category} 
+        {categoryTwo && <Card className={'service-card'} bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.category} 
             body={categoryTwo.description} 
             link={`services#${categoryTwo.category.trim().split(' ').join('-')}`}
-            icon={<Shovel className='w-1/2 h-1/2 md:h-full md:w-full' fill={'white'}></Shovel>}>
+            icon={<Shovel className='w-full h-full' stroke={'white'}></Shovel>}>
               
             </Card>
         }
-        {categoryThree && <Card bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.category} 
+        {categoryThree && <Card className={'service-card'} bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.category} 
             body={categoryThree.description} 
             link={`services#${categoryThree.category.trim().split(' ').join('-')}`}
-            icon={<Pipe className='w-1/2 h-1/2 md:h-full md:w-full' fill={'white'}></Pipe>}>
+            icon={<Pipe className='w-full h-full' fill={'white'}></Pipe>}>
               
             </Card>
         }

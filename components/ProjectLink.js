@@ -1,15 +1,17 @@
 import ContentfulImage from "./contentful-image";
 
-export const ProjectLink = ({className, picture, title, link}) => (
-    <a className={`relative block ${className}`} href={link}><ContentfulImage
+export const ProjectLink = ({ className, picture, title, link }) => (
+  <a className={`project-link relative block ${className}`} href={link}><ContentfulImage
     className='object-cover w-full h-full'
     src={picture.url}
     width={picture.width}
     height={picture.height}
     alt={picture.description}
   />
-    <h4 >{title}</h4>
-    <div className='absolute top-0 bottom-0 left-0 right-0 z-20 opacity-0 bg-aqua-blue hover:opacity-60'></div>
+
+    <div className='absolute top-0 bottom-0 left-0 right-0 z-20 opacity-60 md:opacity-0 project-link-overlay bg-aqua-blue'>    
+    </div>
+    <div className="absolute top-0 bottom-0 left-0 right-0 z-30 flex items-center justify-center w-full h-full md:hidden project-title"><h4 className="text-xl font-bold text-white uppercase">{title}</h4></div>
   </a>
 
-  )
+)
