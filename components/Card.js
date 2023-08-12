@@ -2,7 +2,7 @@ import { aquaGreenHex } from "../lib/constants"
 
 
 export const Card = ({ className, icon, title, body, link, bgColor, titleColor, }) => {
-  return (<a className={` block w-8/12 h-full md:w-1/4 ${className}`} href={link}><div style={{ backgroundColor: bgColor }} className='flex flex-col items-start w-full h-auto p-3 mx-auto mb-4 shadow-2xl'>
+  return (<a className={` block w-8/12 h-full md:w-1/4 ${className}`} href={link}><div style={{ backgroundColor: bgColor }} className='flex flex-col items-start w-full h-auto p-3 mx-auto mb-4 shadow-2xl md:h-full'>
       <div className="w-1/3 m-auto md:w-1/2 md:mb-5">{icon}</div>
       <h3 style={{ color: titleColor }} className='w-full text-2xl text-center md:text-left md:mb-2'>{title}</h3>
       <p className='hidden md:block md:mb-2'>{body}</p>
