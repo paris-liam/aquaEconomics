@@ -2,7 +2,7 @@ import ContentfulImage from "../contentful-image";
 import { Hero } from "../hero";
 import { aquaBlueHex } from "../../lib/constants"
 
-export const ContactSlide = ({ slideInfo = {} }) => (<Hero overlayColor={aquaBlueHex} background={<ContentfulImage
+export const ContactSlide = ({ slideInfo = {} }) => (<Hero overlayColor={aquaBlueHex} background={slideInfo?.backgroundImage && <ContentfulImage
   className='object-cover w-full h-full'
   src={slideInfo?.backgroundImage?.url}
   width={slideInfo?.backgroundImage?.width}

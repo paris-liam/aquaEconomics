@@ -14,7 +14,7 @@ export const ServicesSlide = ({ slideInfo = {}, serviceCategories = [] }) => {
   const categoryTwo = serviceCategories[1] || {};
   const categoryThree = serviceCategories[2] || {};
 
-  return (<Hero  overlayColor={'black'} background={<ContentfulImage
+  return (<Hero  overlayColor={'black'} background={slideInfo?.backgroundImage && <ContentfulImage
     className='object-cover w-full h-full'
     src={backgroundImage?.url}
     width={backgroundImage?.width}
@@ -28,21 +28,21 @@ export const ServicesSlide = ({ slideInfo = {}, serviceCategories = [] }) => {
       <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly '>
         {categoryOne && <Card className={'service-card'} bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.category} 
             body={categoryOne.description} 
-            link={`services#${categoryOne.category.trim().split(' ').join('-')}`}
+            link={`services#${categoryOne?.category?.trim().split(' ').join('-')}`}
             icon={<Survey className='w-full h-full' fill={aquaGreenHex}></Survey>}>
                             
             </Card>
         }
         {categoryTwo && <Card className={'service-card'} bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.category} 
             body={categoryTwo.description} 
-            link={`services#${categoryTwo.category.trim().split(' ').join('-')}`}
+            link={`services#${categoryTwo?.category?.trim().split(' ').join('-')}`}
             icon={<Shovel className='w-full h-full' stroke={'white'}></Shovel>}>
               
             </Card>
         }
         {categoryThree && <Card className={'service-card'} bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.category} 
             body={categoryThree.description} 
-            link={`services#${categoryThree.category.trim().split(' ').join('-')}`}
+            link={`services#${categoryThree?.category?.trim().split(' ').join('-')}`}
             icon={<Pipe className='w-full h-full' fill={'white'}></Pipe>}>
               
             </Card>

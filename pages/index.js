@@ -36,6 +36,7 @@ export async function getStaticProps() {
   const contactSlideInfo = (await getSlideInfo(CONTACT_SLIDE_CONTENT_ID)) ?? {}
   const highlightedProjects = (await getHighlightedProjects()) ?? {}
   const serviceCategories = (await getAllServiceCategories()) ?? {}
+  console.warn(serviceCategories)
    return {
     props: { landingSlideInfo,
       aboutSlideInfo,

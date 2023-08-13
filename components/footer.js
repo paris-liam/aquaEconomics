@@ -1,6 +1,6 @@
 import Container from './container'
 import { EXAMPLE_PATH } from '../lib/constants'
-import { Logo } from '../lib/logo'
+import { Logo } from '../lib/svgs/logo'
 import { navLinkClasses } from './header'
 
 export const footerNavLinkClasses = `block px-4 py-2 text-xs font-sans hover:text-aqua-green`

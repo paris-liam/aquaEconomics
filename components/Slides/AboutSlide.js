@@ -16,7 +16,7 @@ export const AboutSlide = ({ slideInfo }) => {
         width={image.width}
         height={image.height}
         alt={image.title}
-        className={`object-cover w-full h-full ${index === 0 ? "col-span-full row-span-full md:col-span-2 " : "col-span-1 hidden md:block"} ${index === 2 ? "md:row-span-3" : "md:row-span-4"}`}
+        className={`shadow-xl object-cover w-full h-full ${index === 0 ? "col-span-full row-span-full md:col-span-2 " : "col-span-1 hidden md:block"} ${index === 2 ? "md:row-span-3" : "md:row-span-4"}`}
       />
     ))}
     </div>
