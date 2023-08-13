@@ -1,24 +1,25 @@
+import { SlideInfo } from '@/lib/types'
 import Layout from '../components/layout'
 import { ContactSlide } from '../components/Slides/ContactSlide'
 import { getSlideInfo } from '../lib/api'
 import { CONTACT_SLIDE_CONTENT_ID } from '../lib/constants'
 
-export default function Contact({ contactSlideInfo }) {
+export default function Contact({ slideInfo }: { slideInfo: SlideInfo }) {
   return (
     <>
       <Layout>
-          <ContactSlide slideInfo={contactSlideInfo}></ContactSlide>
+          <ContactSlide {...slideInfo}></ContactSlide>
       </Layout>
     </>
   )
 }
 
 export async function getStaticProps() {
-  const contactSlideInfo = (await getSlideInfo(CONTACT_SLIDE_CONTENT_ID)) ?? {}
+  const slideInfo = (await getSlideInfo(CONTACT_SLIDE_CONTENT_ID)) ?? {}
 
   return {
     props: {
-      contactSlideInfo,
+      slideInfo,
     }
   }
 }

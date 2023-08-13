@@ -1,20 +1,25 @@
 
-import ContentfulImage from "../contentful-image";
+import ContentfulImage from "../ContentfulImage";
 import { Hero } from "../hero";
 import { aquaGreenHex, aquaBlueHex } from "../../lib/constants"
 import { Card } from '../Card'
-import Survey from "../../lib/svgs/Survey";
-import Pipe from "../../lib/svgs/Pipe";
-import Shovel from "../../lib/svgs/Shovel";
+import {Survey} from "../../lib/svgs/Survey";
+import {Pipe} from "../../lib/svgs/Pipe";
+import {Shovel} from "../../lib/svgs/Shovel";
+import { Service, ServiceCategory, SlideInfo } from "@/lib/types";
 
-export const ServicesSlide = ({ slideInfo = {}, serviceCategories = [] }) => {
+type ServicesSlideProps = {
+  slideInfo: SlideInfo,
+  serviceCategories: ServiceCategory[]
+}
+export const ServicesSlide = ({ slideInfo, serviceCategories }: ServicesSlideProps) => {
   const title = slideInfo?.title || ''
   const backgroundImage = slideInfo?.backgroundImage || {}
   const categoryOne = serviceCategories[0] || {};
   const categoryTwo = serviceCategories[1] || {};
   const categoryThree = serviceCategories[2] || {};
 
-  return (<Hero  overlayColor={'black'} background={slideInfo?.backgroundImage && <ContentfulImage
+  return (<Hero className={'min-h-75vh'} overlayColor={'black'} background={slideInfo?.backgroundImage && <ContentfulImage
     className='object-cover w-full h-full'
     src={backgroundImage?.url}
     width={backgroundImage?.width}
@@ -27,25 +32,19 @@ export const ServicesSlide = ({ slideInfo = {}, serviceCategories = [] }) => {
       </h2>
       <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly '>
         {categoryOne && <Card className={'service-card'} bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.category} 
-            body={categoryOne.description} 
+            body={categoryOne.categoryDescription} 
             link={`services#${categoryOne?.category?.trim().split(' ').join('-')}`}
-            icon={<Survey className='w-full h-full' fill={aquaGreenHex}></Survey>}>
-                            
-            </Card>
+            icon={<Survey className='w-full h-full' fill={aquaGreenHex}></Survey>} />
         }
         {categoryTwo && <Card className={'service-card'} bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.category} 
-            body={categoryTwo.description} 
+            body={categoryTwo.categoryDescription} 
             link={`services#${categoryTwo?.category?.trim().split(' ').join('-')}`}
-            icon={<Shovel className='w-full h-full' stroke={'white'}></Shovel>}>
-              
-            </Card>
+            icon={<Shovel className='w-full h-full' stroke={'white'}></Shovel>} />
         }
         {categoryThree && <Card className={'service-card'} bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.category} 
-            body={categoryThree.description} 
+            body={categoryThree.categoryDescription} 
             link={`services#${categoryThree?.category?.trim().split(' ').join('-')}`}
-            icon={<Pipe className='w-full h-full' fill={'white'}></Pipe>}>
-              
-            </Card>
+            icon={<Pipe className='w-full h-full' fill={'white'}></Pipe>} />
         }
       </div>
     </div>

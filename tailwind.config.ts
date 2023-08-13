@@ -1,5 +1,6 @@
-/** @type {import('tailwindcss').Config} */
-module.exports = {
+import type { Config } from 'tailwindcss'
+
+const config: Config = {
   content: [
     './pages/**/*.{js,ts,jsx,tsx}',
     './components/**/*.{js,ts,jsx,tsx}',
@@ -32,7 +33,8 @@ module.exports = {
         tighter: '-.04em',
       },
       lineHeight: {
-        tight: 1.2,
+        tight: '1.2',
+        11: '3rem'
       },
       fontSize: {
         '5xl': '2.5rem',
@@ -44,10 +46,12 @@ module.exports = {
         small: '0 5px 10px rgba(0, 0, 0, 0.12)',
         medium: '0 8px 30px rgba(0, 0, 0, 0.12)',
       },
-      lineHeight: {
-        '11': '3rem'
-      },
       height: {
+        '65vh': '65vh',
+        '75vh': '75vh',
+        '90vh': '90vh'
+      },
+      minHeight: {
         '65vh': '65vh',
         '75vh': '75vh',
         '90vh': '90vh'
@@ -56,3 +60,6 @@ module.exports = {
   },
   plugins: [],
 }
+
+
+export default config

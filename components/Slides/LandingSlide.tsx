@@ -1,9 +1,16 @@
 
 import { WaveBackground } from "../WaveBackground";
-import ContentfulImage from "../contentful-image";
+import ContentfulImage from "../ContentfulImage";
 import { Hero } from "../hero";
 import { executeScroll } from '../../lib/constants'
-export const LandingSlide = ({scrollRef, slideInfo}) => {
+import { SlideInfo } from "@/lib/types";
+import { RefObject } from "react";
+
+type LandingSlideProps = {
+  slideInfo: SlideInfo,
+  scrollRef: RefObject<HTMLElement>
+}
+export const LandingSlide = ({scrollRef, slideInfo}: LandingSlideProps) => {
   const title = slideInfo?.title || ''
   const contentImagesCollection = slideInfo?.contentImagesCollection || {}
   return (<Hero background={<WaveBackground></WaveBackground>}>

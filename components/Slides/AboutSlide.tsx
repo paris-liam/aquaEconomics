@@ -1,15 +1,13 @@
-import ContentfulImage from "../contentful-image";
+import { ContentfulImagePayload, SlideInfo } from "@/lib/types";
+import ContentfulImage from "../ContentfulImage";
 import { Hero } from "../hero"; 
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
-export const AboutSlide = ({ slideInfo }) => {
-   const contentImagesCollection = slideInfo?.contentImagesCollection || {};
-   const title = slideInfo?.title || '';
-   const description = slideInfo?.description || {};
+export const AboutSlide = ({ contentImagesCollection, title, description }: SlideInfo) => {
 
     return (<Hero><div className='flex flex-col w-4/5 h-full py-12 m-auto mb-12 about-panel md:flex-row justify-evenly'>
     <div className='grid grid-cols-2 gap-4 h-1/2 md:h-full image-container md:w-1/2 grid-rows-8'>
-    {contentImagesCollection?.items?.map((image, index) => (
+    {contentImagesCollection?.items?.map((image: ContentfulImagePayload, index: number) => (
       <ContentfulImage
         key={`about image ${index}`}
         src={image.url}
@@ -22,6 +20,9 @@ export const AboutSlide = ({ slideInfo }) => {
     </div>
     <div className='md:ml-10 text-container md:w-1/2 md:my-10'>
         <h2 className='my-5 text-4xl leading-8 uppercase text-aqua-green'>{title}</h2>
-        <div className='my-5 text-xl unreset' dangerouslySetInnerHTML={{__html: documentToHtmlString(description?.json)}}></div>
+        <div className='my-5 text-xl unreset' 
+          //@ts-ignore
+          dangerouslySetInnerHTML={{__html: documentToHtmlString(description?.json)}}>
+        </div>
     </div>  
 </div></Hero>)}

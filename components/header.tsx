@@ -1,5 +1,6 @@
-import { useEffect, useState, useRef } from 'react';
-import { Logo } from '../lib/svgs/logo'
+import { useEffect, useState, useRef, RefObject } from 'react';
+import { Logo } from '../lib/svgs/Logo'
+import Link from 'next/link';
 
 export const headerNavLinkClasses = `block px-4 py-2 text-lg font-sans font-bold hover:text-aqua-green`
 export const Header = () => {
@@ -8,14 +9,14 @@ export const Header = () => {
 
   const [isMobile, setIsMobile] = useState(true)
 
-  const headerRef = useRef(null)
+  const headerRef: RefObject<HTMLElement> = useRef(null)
   
   useEffect(() => {
-    const mobileBreakPoint = headerRef.current.offsetWidth <= 700
-    setIsMobile(headerRef.current.offsetWidth <= 700);
-    sethideNav(headerRef.current.offsetWidth <= 700)
+    const mobileBreakPoint = headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth  <= 700
+    setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700));
+    sethideNav(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
     const onResize = () => {
-      setIsMobile(headerRef.current.offsetWidth <= 700)
+      setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
     }
 
     window.addEventListener("resize", onResize);
@@ -31,9 +32,9 @@ export const Header = () => {
         className="flex flex-wrap items-center justify-between w-full px-6 py-6 text-lg text-gray-700 bg-white md:px-30"
       >
         <div>
-          <a href="/">
+          <Link href="/">
             <Logo></Logo>
-          </a>
+          </Link>
         </div>
 
         <svg
@@ -58,18 +59,18 @@ export const Header = () => {
             className="pt-4 text-base text-black-700 text-bold md:flex md:justify-between md:pt-0"
           >
             <li>
-              <a className={headerNavLinkClasses} href="/about">About Us</a>
+              <Link className={headerNavLinkClasses} href="/about">About Us</Link>
             </li>
             <li>
-              <a className={headerNavLinkClasses} href="/projects">Projects</a>
+              <Link className={headerNavLinkClasses} href="/projects">Projects</Link>
             </li>
             <li>
-              <a className={headerNavLinkClasses} href="/services">Services</a>
-              <a className={`${headerNavLinkClasses} md:hidden`} href="contact">Contact Us</a>
+              <Link className={headerNavLinkClasses} href="/services">Services</Link>
+              <Link className={`${headerNavLinkClasses} md:hidden`} href="contact">Contact Us</Link>
             </li>
           </ul>
         </div>
-        <a href="/contact" className={`${headerNavLinkClasses} hidden md:block uppercase border-2 border-black border-solid`}>contact us</a>
+        <Link href="/contact" className={`${headerNavLinkClasses} hidden md:block uppercase border-2 border-black border-solid`}>contact us</Link>
       </nav>
     </header>
   )

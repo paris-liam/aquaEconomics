@@ -3,7 +3,9 @@ import Footer from '../components/footer'
 import Meta from '../components/meta'
 import {Header} from './header'
 
-export default function Layout({ children }) {
+type LayoutProps = { children: React.ReactNode}
+
+export default function Layout({ children }: LayoutProps) {
   useEffect(() => {
     document.getElementsByTagName("html")[0].classList.add('smooth-scroll')
   },[])

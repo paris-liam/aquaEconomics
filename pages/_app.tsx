@@ -11,11 +11,11 @@ const roboto = Roboto_Condensed({
 const open_sans = Open_Sans({
   subsets:['latin'],
   variable: '--font-open-sans',
-  weight: ['variable'],
+  weight: ["300", "400", "700", "500", "600", "800"],
   style: ['italic', 'normal']
 })
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps }: any) {
   return <main className={`${roboto.variable} ${open_sans.variable} font-roboto`}><Component {...pageProps} /></main>
 }
 

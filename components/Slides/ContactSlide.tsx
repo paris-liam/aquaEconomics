@@ -1,20 +1,21 @@
-import ContentfulImage from "../contentful-image";
+import ContentfulImage from "../ContentfulImage";
 import { Hero } from "../hero";
 import { aquaBlueHex } from "../../lib/constants"
+import { SlideInfo } from "@/lib/types";
 
-export const ContactSlide = ({ slideInfo = {} }) => (<Hero overlayColor={aquaBlueHex} background={slideInfo?.backgroundImage && <ContentfulImage
+export const ContactSlide = ({backgroundImage, title }: SlideInfo) => (<Hero overlayColor={aquaBlueHex} background={backgroundImage && <ContentfulImage
   className='object-cover w-full h-full'
-  src={slideInfo?.backgroundImage?.url}
-  width={slideInfo?.backgroundImage?.width}
-  height={slideInfo?.backgroundImage?.height}
-  alt={slideInfo?.backgroundImage?.title}
+  src={backgroundImage?.url}
+  width={backgroundImage?.width}
+  height={backgroundImage?.height}
+  alt={backgroundImage?.title}
 />}>
-  <div className='flex flex-col items-center w-full h-full'>
-    <h2 className='my-12 text-4xl leading-4 text-white uppercase md:text-6xl'>
-      {slideInfo?.title || ''}
+  <div className='flex flex-col items-center w-full h-75vh'>
+    <h2 className='my-12 text-4xl leading-4 font-bold text-white uppercase md:text-6xl'>
+      {title || ''}
     </h2>
     <form className="flex flex-col w-3/4 p-4 h-3/4">
-      <div className="flex flex-row justify-between h-auto gap-3 grow-0">
+      <div className="flex flex-col md:flex-row justify-between h-auto gap-3 grow-0">
         <div className="flex flex-col"><label className="text-lg text-white">Name</label>
           <input type='name' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
           <div className="flex flex-col"><label className="text-lg text-white">Email</label>
