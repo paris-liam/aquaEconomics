@@ -1,3 +1,4 @@
+import { Document } from '@contentful/rich-text-types';
 export type ContentfulImagePayload = {
     title: string
     description: string
@@ -69,5 +70,5 @@ export type SlideInfo = {
 }
 
 export type ContentfulRichText = {
-    json: object[]
+    json: Document
 }

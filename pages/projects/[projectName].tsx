@@ -2,30 +2,38 @@ import { Project, SlideInfo } from '@/lib/types';
 import Layout from '../../components/layout'
 import { ProjectsSlide } from '../../components/Slides/ProjectsSlide'
 import { generateProjectPaths, getHighlightedProjects, getProjectData, getSlideInfo } from '../../lib/api'
-import { PROJECTS_SLIDE_CONTENT_ID } from '../../lib/constants';
+import { customMarkdownOptions, PROJECTS_SLIDE_CONTENT_ID } from '../../lib/constants';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
+
 
 export default function Project({ projectData, slideInfo, highlightedProjects }: {projectData: Project; slideInfo: SlideInfo; highlightedProjects: Project[]}) {
   return (
     <>
       <Layout>
-        <h1>{projectData?.title}</h1>
-        
-        <ProjectsSlide highlightedProjects={highlightedProjects} slideInfo={slideInfo}></ProjectsSlide>
-
+        <div>
+          <h1 className='text-2xl'>{projectData?.title}</h1>
+        </div>
+        <div>
+              {
+                documentToReactComponents(projectData.description.json, customMarkdownOptions(projectData.description))
+              }
+          
+        </div>
+      <ProjectsSlide slideInfo={slideInfo} highlightedProjects={highlightedProjects}></ProjectsSlide>
       </Layout>
     </>
   )
 }
 
-export async function getStaticProps({ params }: any) {
+export async function getStaticProps({ params }: any) { 
   const projectData = await getProjectData(params.projectName) || {};
-  const projectSlideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
+  const slideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
   const highlightedProjects = (await getHighlightedProjects()) ?? {}
 
   return {
     props: {
       projectData,
-      projectSlideInfo,
+      slideInfo,
       highlightedProjects
     }
   }

@@ -1,7 +1,7 @@
 import { ContentfulImagePayload, SlideInfo } from "@/lib/types";
 import ContentfulImage from "../ContentfulImage";
 import { Hero } from "../hero"; 
-import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 
 export const AboutSlide = ({ contentImagesCollection, title, description }: SlideInfo) => {
 
@@ -22,7 +22,7 @@ export const AboutSlide = ({ contentImagesCollection, title, description }: Slid
         <h2 className='my-5 text-4xl leading-8 uppercase text-aqua-green'>{title}</h2>
         <div className='my-5 text-xl unreset' 
           //@ts-ignore
-          dangerouslySetInnerHTML={{__html: documentToHtmlString(description?.json)}}>
+          dangerouslySetInnerHTML={{__html: documentToReactComponents(description?.json)}}>
         </div>
     </div>  
 </div></Hero>)}

@@ -8,19 +8,19 @@ export default function ProjectIndex({ slideInfo, highlightedProjects }: {slideI
     return (
       <>
         <Layout>
-            <ProjectsSlide highlightedProjects={highlightedProjects} slideInfo={slideInfo}></ProjectsSlide>
-        </Layout>
+      {/*<ProjectsSlide slideInfo={slideInfo} highlightedProjects={highlightedProjects}></ProjectsSlide>*/}
+      </Layout>
       </>
     )
   }
   
   export async function getStaticProps() {
-    const projectSlideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
+    const slideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
     const highlightedProjects = (await getHighlightedProjects()) ?? {}
 
     return {
       props: {
-        projectSlideInfo,
+        slideInfo,
         highlightedProjects
       }
     }

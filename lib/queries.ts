@@ -1,5 +1,6 @@
-export const PROJECT_GRAPHQL_FIELDS = `      
+export const PROJECT_GRAPHQL_FIELDS = (singleProject:boolean) =>  `      
   title
+  highlight 
   headerImage {
     title
     description
@@ -7,10 +8,43 @@ export const PROJECT_GRAPHQL_FIELDS = `
     width
     height
   }
-  description {
+  ${singleProject ? `  description {
     json
+    links {
+      assets {
+        block {
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+      }
+    }
+  }`: `description { 
+    json
+  }`}
+`
+
+export const SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS = (title: string) => `
+query {
+  projectCollection(where: {
+        AND: [
+      {
+        OR: [
+          { title: "${title}" },
+        ]
+      },
+    ],
+  }) {
+    items{
+      ${PROJECT_GRAPHQL_FIELDS(true)}
+    }
   }
-  highlight 
+}
 `
 
 export const SLIDE_GRAPHQL_FIELDS = (id: string) =>`query {

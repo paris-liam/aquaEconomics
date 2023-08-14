@@ -1,4 +1,4 @@
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer"
+import { documentToReactComponents } from "@contentful/rich-text-react-renderer"
 import { aquaGreenHex } from "../lib/constants"
 import { ReactComponentElement } from "react";
 import { ContentfulRichText } from "@/lib/types";
@@ -20,7 +20,7 @@ export const Card = ({ className, icon, title, body, link, bgColor, titleColor, 
       <h3 style={{ color: titleColor }} className='w-full text-xl text-center grow-0 md:text-left md:mb-2'>{title}</h3>
       <div className='hidden grow md:block md:mb-2' 
         // @ts-ignore
-        dangerouslySetInnerHTML={{__html: documentToHtmlString(body?.json)}}>
+        dangerouslySetInnerHTML={{__html: documentToReactComponents(body?.json)}}>
       </div>
       <button className={`py-1 px-3 grow-0 text-l hidden md:block border border-white ${bgColor === 'white' ? 'bg-aqua-green text-white' : bgColor === aquaGreenHex ? 'bg-white text-aqua-green' : 'bg-aqua-blue text-white'}`}>Read more 
       <svg className='inline-block ml-2 rotate-220' width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
