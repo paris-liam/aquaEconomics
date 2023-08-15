@@ -24,7 +24,11 @@ export const Header = () => {
     return () => {
       window.removeEventListener("resize", onResize);
     }
-  },[])
+  },[]) 
+
+  useEffect(() => {
+    sethideNav(isMobile)
+  },[isMobile])
 
   return (
     <header ref={headerRef}>
