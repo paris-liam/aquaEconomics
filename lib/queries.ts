@@ -13,6 +13,9 @@ export const PROJECT_GRAPHQL_FIELDS = (singleProject:boolean) =>  `
     links {
       assets {
         block {
+          sys { 
+            id
+          }
           title
           description
           contentType
@@ -24,14 +27,34 @@ export const PROJECT_GRAPHQL_FIELDS = (singleProject:boolean) =>  `
         }
       }
     }
-  }`: `description { 
+  }
+  date
+  shortSummary {
     json
-  }`}
+    links {
+      assets {
+        block {
+          sys { 
+            id
+          }
+          title
+          description
+          contentType
+          fileName
+          size
+          url
+          width
+          height
+        }
+      }
+    }
+  }
+  `: ``}
 `
 
 export const SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS = (title: string) => `
 query {
-  projectCollection(where: {
+  projectCollection(limit: 1, where: {
         AND: [
       {
         OR: [
@@ -79,6 +102,23 @@ export const SERVICE_CATEGORIES_GRAPHQL_FIELDS = `query {
       categoryId
       categoryDescription {
         json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              title
+              description
+              contentType
+              fileName
+              size
+              url
+              width
+              height
+            }
+          }
+        }
       }
     }
   }
@@ -97,6 +137,23 @@ export const SERVICES_GRAPHQL_FIELDS = `query {
       }
       description {
         json
+        links {
+          assets {
+            block {
+              sys {
+                id
+              }
+              title
+              description
+              contentType
+              fileName
+              size
+              url
+              width
+              height
+            }
+          }
+        }
       }
       groupId
     }

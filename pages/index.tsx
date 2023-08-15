@@ -43,7 +43,7 @@ export async function getStaticProps() {
   const projectSlideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
   const servicesSlideInfo = (await getSlideInfo(SERVICES_SLIDE_CONTENT_ID)) ?? {}
   const contactSlideInfo = (await getSlideInfo(CONTACT_SLIDE_CONTENT_ID)) ?? {}
-  const highlightedProjects = (await getHighlightedProjects()) ?? {}
+ const highlightedProjects = (await getHighlightedProjects()) ?? {}
   const serviceCategories = (await getAllServices()) ?? {}
    return {
     props: { landingSlideInfo,

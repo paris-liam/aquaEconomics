@@ -8,7 +8,7 @@ export default function ProjectIndex({ slideInfo, highlightedProjects }: {slideI
     return (
       <>
         <Layout>
-      {/*<ProjectsSlide slideInfo={slideInfo} highlightedProjects={highlightedProjects}></ProjectsSlide>*/}
+      <ProjectsSlide slideInfo={slideInfo} highlightedProjects={highlightedProjects}></ProjectsSlide>
       </Layout>
       </>
     )

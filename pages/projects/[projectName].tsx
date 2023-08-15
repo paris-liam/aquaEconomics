@@ -12,10 +12,19 @@ export default function Project({ projectData, slideInfo, highlightedProjects }:
       <Layout>
         <div>
           <h1 className='text-2xl'>{projectData?.title}</h1>
+          <h2>{projectData?.date}</h2>
+          <div>
+              {
+                //@ts-ignore
+                documentToReactComponents(projectData?.description?.json, customMarkdownOptions(projectData?.description))
+              }
+
+        </div>
         </div>
         <div>
               {
-                documentToReactComponents(projectData.description.json, customMarkdownOptions(projectData.description))
+                //@ts-ignore
+                documentToReactComponents(projectData?.description?.json, customMarkdownOptions(projectData?.description))
               }
           
         </div>
@@ -29,7 +38,6 @@ export async function getStaticProps({ params }: any) {
   const projectData = await getProjectData(params.projectName) || {};
   const slideInfo = (await getSlideInfo(PROJECTS_SLIDE_CONTENT_ID)) ?? {}
   const highlightedProjects = (await getHighlightedProjects()) ?? {}
-
   return {
     props: {
       projectData,

@@ -40,9 +40,11 @@ export type ContentfulSlideInfoPayload = {
 
 export type Project = {
     title: string
-    description: ContentfulRichText
+    description?: ContentfulRichText
     headerImage: ContentfulImagePayload;
     highlight: boolean;
+    shortSummary?: ContentfulRichText;
+    date?: string;
 }
 
 export type Service = {

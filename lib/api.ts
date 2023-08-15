@@ -18,9 +18,9 @@ async function fetchGraphQL(query: string) {
 
 function extractProjectEntries(projectPayload: ContentfulProjectsPayload): Project[] {
   return projectPayload.data?.projectCollection?.items?.map((project) => {
-    const { title, description, headerImage, highlight } = project;
+    const { title, headerImage, highlight } = project;
     return {
-      title, description, headerImage, highlight
+      title, headerImage, highlight
     }
   })
 }

@@ -2,7 +2,7 @@ import { Service, ServiceCategory, SlideInfo } from '@/lib/types'
 import Layout from '../components/layout'
 import { ServicesSlide } from '../components/Slides/ServicesSlide'
 import { getAllServices, getSlideInfo } from '../lib/api'
-import { SERVICES_SLIDE_CONTENT_ID } from '../lib/constants'
+import { SERVICES_SLIDE_CONTENT_ID, customMarkdownOptions } from '../lib/constants'
 import { documentToReactComponents} from '@contentful/rich-text-react-renderer'
 //@ts-ignore
 export default function Services({ slideInfo, services }: { slideInfo: SlideInfo; services: ServiceCategory[] }) {
@@ -23,17 +23,20 @@ export default function Services({ slideInfo, services }: { slideInfo: SlideInfo
           <div key={`${category}`}>
             <div>
               <h2 >{category}</h2>
-              <div
-                //@ts-ignore
-                dangerouslySetInnerHTML={{ __html: documentToReactComponents(categoryDescription.json) }}>
+              <div>
+              {
+                documentToReactComponents(categoryDescription.json, customMarkdownOptions(categoryDescription))
+              }
               </div>
               {
                 services && services.map((service: Service) => (
                   <div key={`${service}`}>
                     <h2 key={`${service.title}`}>{service.title}</h2>
-                    <div
-                      //@ts-ignore
-                      dangerouslySetInnerHTML={{ __html: documentToReactComponents(service.description.json) }}>
+                    <div>
+                    {
+                documentToReactComponents(service?.description?.json, customMarkdownOptions(service?.description))
+              }
+          
                     </div>
                   </div>
                 ))
