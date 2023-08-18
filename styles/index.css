@@ -26,3 +26,9 @@
         display: flex;
     }
 }
+
+.rich-text {
+    img {
+        max-width: 70%;
+    }
+}
