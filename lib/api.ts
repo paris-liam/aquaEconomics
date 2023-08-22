@@ -30,7 +30,7 @@ function extractAndSortServiceList(services: ContentfulServicesPayload, categori
   const formattedCategories = extractCategories(categories);
   const serviceList = services.data.serviceCollection.items.map((service) => ({
     ...service,
-    anchor: `#${formatLink(service.title)}`
+    anchor: `${formatLink(service.title)}`
   }))
   formattedCategories.forEach((category: ServiceCategory) => {
     const { categoryId } = category
@@ -58,7 +58,7 @@ function extractCategories(categories: ContentfulServiceCategoriesPayload) {
       shortDescription,
       categoryDescription,
       categoryId,
-      anchor: `#${formatLink(title)}`
+      anchor: `${formatLink(title)}`
     }
   })
 }

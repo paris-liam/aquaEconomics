@@ -11,28 +11,28 @@ import { Hero } from '@/components/hero';
 
 export default function Project({ projectData, projectSlideInfo, contactSlideInfo, highlightedProjects }: { projectData: Project; projectSlideInfo: SlideInfo; contactSlideInfo: SlideInfo; highlightedProjects: Project[] }) {
   return (
-    <>
       <Layout>
-        <Hero className={`min-h-45vh h-45vh`} overlayColor={'#000'} background={   
-              <ContentfulImage
-                className='object-fill'
+        <Hero className={`min-h-45vh h-45vh`} overlayColor={'#000'}>
+          <div className='flex flex-col md:flex-row mx-5 md:ml-10 mt-5 justify-start gap-10'>
+          <ContentfulImage
+                className='md:w-1/3 object-fill'
                 height={projectData?.headerImage.height}
                 width={projectData?.headerImage.width}
                 alt={projectData?.headerImage.title}
                 src={projectData?.headerImage.url}
-              ></ContentfulImage>}>
+          ></ContentfulImage>
 
-<div className='header-text-container w-1/3 m-auto'>
+<div className='header-text-container md:w-1/3'>
               <h1 className='text-3xl text-aqua-green font-bold mb-1'>{projectData?.title}</h1>
-              <h2 className='text-gray-700 font-bold italic mb-3'>{projectData?.date}</h2>
-              <div className='rich-text'>{
+              <h2 className='text-white font-bold italic mb-3'>{projectData?.date}</h2>
+              <div className='rich-text text-white unreset'>{
                 //@ts-ignore
                 documentToReactComponents(projectData?.shortSummary?.json, customMarkdownOptions(projectData?.shortSummary))
               }</div>
-            </div>
+            </div></div>
               </Hero>
         <div className='m-auto max-w-4xl my-10 '>
-          <div className='rich-text'>
+          <div className='rich-text unreset'>
             {
               //@ts-ignore
               documentToReactComponents(projectData?.description?.json, customMarkdownOptions(projectData?.description))
@@ -42,7 +42,6 @@ export default function Project({ projectData, projectSlideInfo, contactSlideInf
         <ProjectsSlide slideInfo={projectSlideInfo} highlightedProjects={highlightedProjects}></ProjectsSlide>
         <ContactSlide {...contactSlideInfo} ></ContactSlide>
     </Layout >
-    </>
   )
 }
 

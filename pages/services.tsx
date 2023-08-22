@@ -52,9 +52,9 @@ export default function Services({ slideInfo, services }: { slideInfo: SlideInfo
   return (
     <Layout>
       <div ref={serviceSlideRef}><ServicesSlide slideInfo={slideInfo} serviceCategories={services}></ServicesSlide></div>
-      <div className='relative flex flex-row mr-20 ml-10 gap-4'>
-        <div className={`w-1/4 ${serviceListFixed ? 'fixed top-0 left-10': ''}`}><ServiceList highlightedService={highlightedService} serviceList={services}></ServiceList></div>
-        <div className='ml-auto w-3/4 rich-text'>
+      <div className='relative flex flex-row mr-20 ml-10 my-10 gap-4'>
+        <div className={`w-auto hidden md:block ${serviceListFixed ? 'fixed top-10 left-10': ''}`}><ServiceList highlightedService={highlightedService} serviceList={services}></ServiceList></div>
+        <div className='ml-auto w-full md:w-3/5 lg:w-4/5 rich-text unreset'>
           {services && services.map(({ title, categoryDescription, services, anchor }) => (
             <div
               //@ts-ignore
