@@ -31,19 +31,19 @@ export const ServicesSlide = ({ slideInfo, serviceCategories }: ServicesSlidePro
         {title}
       </h2>
       <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly '>
-        {categoryOne && <Card className={'service-card'} bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.category} 
-            body={categoryOne.categoryDescription} 
-            link={`services#${categoryOne?.category?.trim().split(' ').join('-')}`}
+        {categoryOne && <Card className={'service-card'} bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.title} 
+            body={categoryOne.shortDescription} 
+            link={`services${categoryOne?.anchor}`}
             icon={<Survey className='w-full h-full' fill={aquaGreenHex}></Survey>} />
         }
-        {categoryTwo && <Card className={'service-card'} bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.category} 
-            body={categoryTwo.categoryDescription} 
-            link={`services#${categoryTwo?.category?.trim().split(' ').join('-')}`}
+        {categoryTwo && <Card className={'service-card'} bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.title} 
+            body={categoryTwo.shortDescription} 
+            link={`services${categoryTwo?.anchor}`}
             icon={<Shovel className='w-full h-full' stroke={'white'}></Shovel>} />
         }
-        {categoryThree && <Card className={'service-card'} bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.category} 
-            body={categoryThree.categoryDescription} 
-            link={`services#${categoryThree?.category?.trim().split(' ').join('-')}`}
+        {categoryThree && <Card className={'service-card'} bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.title} 
+            body={categoryThree.shortDescription} 
+            link={`services${categoryThree?.anchor}`}
             icon={<Pipe className='w-full h-full' fill={'white'}></Pipe>} />
         }
       </div>

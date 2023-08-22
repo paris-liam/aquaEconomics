@@ -9,7 +9,7 @@ type HeroProps = {
 export const Hero = ({ className, children, background, overlayColor }: HeroProps) => {
     
   return (
-    <div className={`relative block w-full overflow-hidden min-h-90vh pb-10 h-auto ${className}`}>
+    <div className={`relative block w-full overflow-hidden pb-10 h-auto ${className}`}>
       <div className='w-full h-full hero-main-text'>
         {children}
       </div>

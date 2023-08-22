@@ -49,12 +49,14 @@ const config: Config = {
       height: {
         '65vh': '65vh',
         '75vh': '75vh',
-        '90vh': '90vh'
+        '90vh': '90vh',
+        '45vh': '45vh'
       },
       minHeight: {
         '65vh': '65vh',
         '75vh': '75vh',
-        '90vh': '90vh'
+        '90vh': '90vh',
+        '45vh': '45vh'
       }
     },
   },

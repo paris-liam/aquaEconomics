@@ -51,14 +51,17 @@ export type Service = {
     title: string
     headerImage: ContentfulImagePayload
     description: ContentfulRichText
-    groupId: string
+    groupId: string;
+    anchor: string;
 }
 
 export type ServiceCategory = {
-    category: string;
+    title: string;
     categoryId: string
     categoryDescription: ContentfulRichText
+    shortDescription: ContentfulRichText;
     services?: Service[]
+    anchor: string;
 }
 
 

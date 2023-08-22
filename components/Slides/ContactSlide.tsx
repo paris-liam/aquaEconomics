@@ -3,7 +3,7 @@ import { Hero } from "../hero";
 import { aquaBlueHex } from "../../lib/constants"
 import { SlideInfo } from "@/lib/types";
 
-export const ContactSlide = ({backgroundImage, title }: SlideInfo) => (<Hero overlayColor={aquaBlueHex} background={backgroundImage && <ContentfulImage
+export const ContactSlide = ({backgroundImage, title }: SlideInfo) => (<Hero className="min-h-90vh" overlayColor={aquaBlueHex} background={backgroundImage && <ContentfulImage
   className='object-cover w-full h-full'
   src={backgroundImage?.url}
   width={backgroundImage?.width}

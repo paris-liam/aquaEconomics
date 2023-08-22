@@ -6,24 +6,23 @@ import { CONTACT_SLIDE_CONTENT_ID, customMarkdownOptions, PROJECTS_SLIDE_CONTENT
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import ContentfulImage from '@/components/ContentfulImage';
 import { ContactSlide } from '@/components/Slides/ContactSlide';
+import { Hero } from '@/components/hero';
 
 
 export default function Project({ projectData, projectSlideInfo, contactSlideInfo, highlightedProjects }: { projectData: Project; projectSlideInfo: SlideInfo; contactSlideInfo: SlideInfo; highlightedProjects: Project[] }) {
   return (
     <>
       <Layout>
-        <div className='m-auto max-w-4xl my-10 '>
-          <div className='header-container flex flex-row justify-evenly gap-9 my-5'>
-            <div className='w-1/2'>
+        <Hero className={`min-h-45vh h-45vh`} overlayColor={'#000'} background={   
               <ContentfulImage
                 className='object-fill'
-                height={projectData.headerImage.height}
-                width={projectData.headerImage.width}
-                alt={projectData.headerImage.title}
-                src={projectData.headerImage.url}
-              ></ContentfulImage>
-            </div>
-            <div className='header-text-container w-1/2'>
+                height={projectData?.headerImage.height}
+                width={projectData?.headerImage.width}
+                alt={projectData?.headerImage.title}
+                src={projectData?.headerImage.url}
+              ></ContentfulImage>}>
+
+<div className='header-text-container w-1/3 m-auto'>
               <h1 className='text-3xl text-aqua-green font-bold mb-1'>{projectData?.title}</h1>
               <h2 className='text-gray-700 font-bold italic mb-3'>{projectData?.date}</h2>
               <div className='rich-text'>{
@@ -31,7 +30,8 @@ export default function Project({ projectData, projectSlideInfo, contactSlideInf
                 documentToReactComponents(projectData?.shortSummary?.json, customMarkdownOptions(projectData?.shortSummary))
               }</div>
             </div>
-          </div>
+              </Hero>
+        <div className='m-auto max-w-4xl my-10 '>
           <div className='rich-text'>
             {
               //@ts-ignore

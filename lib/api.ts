@@ -1,6 +1,7 @@
 import { Url } from "next/dist/shared/lib/router/router";
 import { PROJECT_GRAPHQL_FIELDS, SERVICES_GRAPHQL_FIELDS, SERVICE_CATEGORIES_GRAPHQL_FIELDS, SLIDE_GRAPHQL_FIELDS, SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS } from "./queries";
 import { ContentfulProjectsPayload, ContentfulServiceCategoriesPayload, ContentfulServicesPayload, ContentfulSlideInfoPayload, Project, ServiceCategory, SlideInfo } from "./types";
+import { formatLink } from "./constants";
 
 async function fetchGraphQL(query: string) {
   return fetch(
@@ -26,10 +27,14 @@ function extractProjectEntries(projectPayload: ContentfulProjectsPayload): Proje
 }
 
 function extractAndSortServiceList(services: ContentfulServicesPayload, categories: ContentfulServiceCategoriesPayload): ServiceCategory[] {
-  const formattedCategories = extractCategories(categories)
+  const formattedCategories = extractCategories(categories);
+  const serviceList = services.data.serviceCollection.items.map((service) => ({
+    ...service,
+    anchor: `#${formatLink(service.title)}`
+  }))
   formattedCategories.forEach((category: ServiceCategory) => {
     const { categoryId } = category
-    category.services = services.data.serviceCollection.items.filter((service) => categoryId === service.groupId)
+    category.services = serviceList.filter((service) => categoryId === service.groupId)
   })
   return formattedCategories
 }
@@ -47,11 +52,13 @@ function extractSlideInfo(slideInfoPayload: ContentfulSlideInfoPayload): SlideIn
 
 function extractCategories(categories: ContentfulServiceCategoriesPayload) {
   return categories?.data?.servicesCategoriesCollection?.items?.map((serviceCategory: ServiceCategory) => {
-    const { category, categoryDescription, categoryId } = serviceCategory
+    const { title, categoryDescription, shortDescription, categoryId } = serviceCategory
     return {
-      category,
+      title,
+      shortDescription,
       categoryDescription,
-      categoryId
+      categoryId,
+      anchor: `#${formatLink(title)}`
     }
   })
 }
@@ -62,7 +69,7 @@ export async function getSlideInfo(slideID: string): Promise<SlideInfo> {
 }
 
 export async function getProjectData(projectTitlePath: string): Promise<Project> {
-  const formattedPath = projectTitlePath.split('-').join(' ');
+  const formattedPath = decodeURIComponent(projectTitlePath.split('-').join(' '));
   const projects = await fetchGraphQL(SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS(formattedPath))
   return projects?.data?.projectCollection?.items[0] || []
 }
@@ -107,12 +114,10 @@ export async function generateProjectPaths():Promise<Url[]> {
       }
     }
   }`)
-  return projects.data.projectCollection.items.map((project:Project) => {
-    let formatted = project?.title?.trim().split(' ').join('-');
-    return {
+
+  return projects.data.projectCollection.items.map((project:Project) => ({
       params: {
-        projectName: encodeURIComponent(formatted),
+        projectName: formatLink(project.title),
       }
-    }
-  })
+  }))
 }

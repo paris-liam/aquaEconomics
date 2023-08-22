@@ -3,10 +3,11 @@ import ContentfulImage from "../ContentfulImage";
 import { Hero } from "../hero"; 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { customMarkdownOptions } from "@/lib/constants";
+import { TopographyBackgroundOne } from "@/lib/svgs/TopographyBackgroundOne";
 
 export const AboutSlide = ({ contentImagesCollection, title, description }: SlideInfo) => {
 
-    return (<Hero><div className='flex flex-col w-4/5 h-full py-12 m-auto mb-12 about-panel md:flex-row justify-evenly'>
+    return (<Hero className="min-h-90vh"><div className='flex flex-col w-4/5 h-full py-12 m-auto mb-12 about-panel md:flex-row justify-evenly'>
     <div className='grid grid-cols-2 gap-4 h-1/2 md:h-full image-container md:w-1/2 grid-rows-8'>
     {contentImagesCollection?.items?.map((image: ContentfulImagePayload, index: number) => (
       <ContentfulImage

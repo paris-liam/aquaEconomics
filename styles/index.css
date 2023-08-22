@@ -29,6 +29,6 @@
 
 .rich-text {
     img {
-        max-width: 70%;
+        width: 50%;
     }
 }

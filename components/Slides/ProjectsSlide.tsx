@@ -9,7 +9,7 @@ type ProjectSlideProps = {
   slideInfo: SlideInfo,
   highlightedProjects: Project[]
 }
-export const ProjectsSlide = ({slideInfo, highlightedProjects}: ProjectSlideProps) => (<Hero overlayColor={aquaGreenHex} background={slideInfo?.backgroundImage && <ContentfulImage
+export const ProjectsSlide = ({slideInfo, highlightedProjects}: ProjectSlideProps) => (<Hero className="min-h-90vh" overlayColor={aquaGreenHex} background={slideInfo?.backgroundImage && <ContentfulImage
     className='object-cover w-full h-full'
     src={slideInfo?.backgroundImage?.url}
     width={slideInfo?.backgroundImage?.width}

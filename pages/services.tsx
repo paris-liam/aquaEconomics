@@ -3,47 +3,87 @@ import Layout from '../components/layout'
 import { ServicesSlide } from '../components/Slides/ServicesSlide'
 import { getAllServices, getSlideInfo } from '../lib/api'
 import { SERVICES_SLIDE_CONTENT_ID, customMarkdownOptions } from '../lib/constants'
-import { documentToReactComponents} from '@contentful/rich-text-react-renderer'
+import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
+import ServiceList from '@/components/ServiceList'
+import { useEffect, useRef, useState } from 'react'
 //@ts-ignore
 export default function Services({ slideInfo, services }: { slideInfo: SlideInfo; services: ServiceCategory[] }) {
+  const createServiceRefMap = (services: ServiceCategory[]) => {
+    let result: { [key: string]: any } = {} as { [key: string]: any }
+    let keySet: Set<string> = new Set();
+    services.forEach((category: ServiceCategory) => {
+      result[category.anchor] = { current: null }
+      keySet.add(category.anchor)
+      category.services?.forEach((service) => {
+        result[service.anchor] = { current: null }
+        keySet.add(service.anchor)
+      })
+    })
+    return result
+  }
+
+  const serviceSlideRef = useRef(null)
+  const [serviceListFixed, setServiceListFixed] = useState(false)
+  const [highlightedService, setHighlightedService] = useState('');
+  const [serviceSectionRefs, setServiceSectionRefs] = useState(createServiceRefMap(services))
+  useEffect(() => {
+    const highlightSlide = () => {
+      Object.keys(serviceSectionRefs).forEach((serviceKey) => {
+        if (serviceSectionRefs[serviceKey] && serviceSectionRefs[serviceKey].current && serviceSectionRefs[serviceKey].current.offsetTop <= window.scrollY) {
+          setHighlightedService(serviceKey)
+        }
+      })
+    }
+    
+    const setFixedServiceList = () => {
+      //@ts-ignore
+      setServiceListFixed(!!(serviceSlideRef && serviceSlideRef.current && window.scrollY > (serviceSlideRef.current.offsetTop + serviceSlideRef.current.offsetHeight)))
+    }
+
+    window.addEventListener("scroll", highlightSlide);
+    window.addEventListener("scroll", setFixedServiceList);
+
+    return () => {
+      window.removeEventListener("scroll", highlightSlide);
+      window.removeEventListener("scroll", setFixedServiceList)
+    }
+
+  }, [serviceSectionRefs])
   return (
-    <>
-      <Layout>
-        <ServicesSlide slideInfo={slideInfo} serviceCategories={services}></ServicesSlide>
-        {services && services.map(({ category, services }) => (
-          <ul key={`${category}`}>
-            <li><h2 >{category}</h2></li>
-            {
-              services && services.map((service: Service) => (
-                <li key={`${service}`}><h3 key={`${service.title}`}>{service.title}</h3></li>
-              ))
-            }
-          </ul>))}
-        {services && services.map(({ category, categoryDescription, services }) => (
-          <div key={`${category}`}>
-            <div>
-              <h2 >{category}</h2>
+    <Layout>
+      <div ref={serviceSlideRef}><ServicesSlide slideInfo={slideInfo} serviceCategories={services}></ServicesSlide></div>
+      <div className='relative flex flex-row mr-20 ml-10 gap-4'>
+        <div className={`w-1/4 ${serviceListFixed ? 'fixed top-0 left-10': ''}`}><ServiceList highlightedService={highlightedService} serviceList={services}></ServiceList></div>
+        <div className='ml-auto w-3/4 rich-text'>
+          {services && services.map(({ title, categoryDescription, services, anchor }) => (
+            <div
+              //@ts-ignore
+              ref={serviceSectionRefs[anchor]} key={anchor} id={anchor}>
+              <h2>{title}</h2>
               <div>
-              {
-                documentToReactComponents(categoryDescription.json, customMarkdownOptions(categoryDescription))
-              }
+                {
+                  documentToReactComponents(categoryDescription.json, customMarkdownOptions(categoryDescription))
+                }
               </div>
               {
                 services && services.map((service: Service) => (
-                  <div key={`${service}`}>
-                    <h2 key={`${service.title}`}>{service.title}</h2>
+                  <div
+                    //@ts-ignore
+                    ref={serviceSectionRefs[service.anchor]} id={service.anchor} key={service.anchor}>
+                    <h2>{service.title}</h2>
                     <div>
-                    {
-                documentToReactComponents(service?.description?.json, customMarkdownOptions(service?.description))
-              }
-          
+                      {
+                        documentToReactComponents(service?.description?.json, customMarkdownOptions(service?.description))
+                      }
+
                     </div>
                   </div>
                 ))
-              }</div></div>
-        ))}
-      </Layout>
-    </>
+              }</div>
+          ))}
+        </div>
+      </div>
+    </Layout>
   )
 }
 export async function getStaticProps() {

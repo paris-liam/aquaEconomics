@@ -98,8 +98,11 @@ export const SLIDE_GRAPHQL_FIELDS = (id: string) =>`query {
 export const SERVICE_CATEGORIES_GRAPHQL_FIELDS = `query {
   servicesCategoriesCollection{
     items {
-      category
+      title
       categoryId
+      shortDescription {
+        json
+      }
       categoryDescription {
         json
         links {

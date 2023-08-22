@@ -4,6 +4,7 @@ import { ProjectsSlide } from '../../components/Slides/ProjectsSlide'
 import { getHighlightedProjects, getSlideInfo } from '../../lib/api'
 import { CONTACT_SLIDE_CONTENT_ID, PROJECTS_SLIDE_CONTENT_ID } from '../../lib/constants'
 import { ContactSlide } from '@/components/Slides/ContactSlide';
+import { TopographyBackgroundOne } from '@/lib/svgs/TopographyBackgroundOne';
 
 export default function ProjectIndex({ projectSlideInfo, contactSlideInfo, highlightedProjects }: { projectSlideInfo: SlideInfo; contactSlideInfo: SlideInfo; highlightedProjects: Project[] }) {
   return (

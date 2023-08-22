@@ -13,7 +13,7 @@ type LandingSlideProps = {
 export const LandingSlide = ({scrollRef, slideInfo}: LandingSlideProps) => {
   const title = slideInfo?.title || ''
   const contentImagesCollection = slideInfo?.contentImagesCollection || {}
-  return (<Hero background={<WaveBackground></WaveBackground>}>
+  return (<Hero className="min-h-90vh" background={<WaveBackground></WaveBackground>}>
 <div className='flex flex-col items-center justify-center w-full h-3/4 md:h-auto md:justify-evenly'>
   <h1 className='w-4/5 m-5 text-2xl leading-8 text-center uppercase md:text-4xl text-aqua-green md:m-10 lg:w-3/4 md:leading-11'>{title}</h1>
   <div className='flex flex-row justify-around w-4/5'>
