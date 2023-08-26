@@ -31,20 +31,20 @@ export const ServicesSlide = ({ slideInfo, serviceCategories }: ServicesSlidePro
         {title}
       </h2>
       <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly '>
-        {categoryOne && <Card className={'service-card'} bgColor={'white'} titleColor={aquaGreenHex} title={categoryOne.title} 
+        {categoryOne && <Card className={'service-card bg-white hover:bg-aqua-green text-aqua-green hover:text-white'} bgColor={'white'} titleColor={'aqua-green'} title={categoryOne.title} 
             body={categoryOne.shortDescription} 
             link={`services#${categoryOne?.anchor}`}
-            icon={<Survey className='w-full h-full' fill={aquaGreenHex}></Survey>} />
+            icon={<Survey className='w-full h-full'></Survey>} />
         }
-        {categoryTwo && <Card className={'service-card'} bgColor={aquaGreenHex} titleColor={'white'}  title={categoryTwo.title} 
+        {categoryTwo && <Card className={'service-card bg-aqua-green hover:bg-white text-white hover:text-aqua-green'} bgColor={'aqua-green'} titleColor={'white'}  title={categoryTwo.title} 
             body={categoryTwo.shortDescription} 
             link={`services#${categoryTwo?.anchor}`}
-            icon={<Shovel className='w-full h-full' stroke={'white'}></Shovel>} />
+            icon={<Shovel className='w-full h-full'></Shovel>} />
         }
-        {categoryThree && <Card className={'service-card'} bgColor={aquaBlueHex} titleColor={'white'}  title={categoryThree.title} 
+        {categoryThree && <Card className={'service-card bg-aqua-blue hover:bg-white text-white hover:text-aqua-blue'} bgColor={'aqua-blue'} titleColor={'white'}  title={categoryThree.title} 
             body={categoryThree.shortDescription} 
             link={`services#${categoryThree?.anchor}`}
-            icon={<Pipe className='w-full h-full' fill={'white'}></Pipe>} />
+            icon={<Pipe className='w-full h-full'></Pipe>} />
         }
       </div>
     </div>

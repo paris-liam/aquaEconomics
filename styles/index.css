@@ -12,12 +12,6 @@
     grid-row: 1 / 3;
 }
 
-.service-card:hover {
-    button {
-        background: black;
-    }
-}
-
 .project-link:hover {
     .project-link-overlay {
         opacity: .6;

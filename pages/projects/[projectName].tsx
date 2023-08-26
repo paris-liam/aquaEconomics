@@ -31,7 +31,7 @@ export default function Project({ projectData, projectSlideInfo, contactSlideInf
               }</div>
             </div></div>
               </Hero>
-        <div className='m-auto max-w-4xl my-10 '>
+        <div className='max-w-4xl mx-10 my-10 md:mx-auto  '>
           <div className='rich-text unreset'>
             {
               //@ts-ignore

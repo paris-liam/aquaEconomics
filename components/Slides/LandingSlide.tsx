@@ -5,6 +5,7 @@ import { Hero } from "../hero";
 import { executeScroll } from '../../lib/constants'
 import { SlideInfo } from "@/lib/types";
 import { RefObject } from "react";
+import { Arrow } from "@/lib/svgs/Arrow";
 
 type LandingSlideProps = {
   slideInfo: SlideInfo,
@@ -31,9 +32,7 @@ export const LandingSlide = ({scrollRef, slideInfo}: LandingSlideProps) => {
   <div>
     <button onClick={() => executeScroll(scrollRef)} className='p-5 my-10 font-sans font-bold text-white bg-aqua-green'>
       Learn More
-      <svg className='inline-block ml-2' width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M17.6754 14.4753L16.6307 13.4507L13.2255 16.9226L13.1606 4.87892L11.6955 4.89945L11.7604 16.9432L8.31824 13.5671L7.28478 14.6208L12.5081 19.7438L17.6754 14.4753Z" fill="white" />
-      </svg>
+      {<Arrow className={'w-2 inline-block mb-2 mt-1 ml-2'}></Arrow>}
     </button>
   </div>
 </div>

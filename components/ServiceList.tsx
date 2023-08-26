@@ -7,16 +7,16 @@ export default function ServiceList({ serviceList, highlightedService }: { servi
         section?.scrollIntoView()
     }
     return (
-        <div className="list-container">
-            {serviceList && serviceList.map(({ title, anchor, services }) => (
-                <ul key={`${title} list item`} className="max-w-max	">
-                    <li className={` p-1 font-bold border border-aqua-green ${highlightedService === anchor ? 'bg-aqua-green text-white': 'bg-none text-aqua-green'}`}><button onClick={()=>{scrollToSection(title)}}><h2 >{title}</h2></button></li>
+        <div className="list-container pr-5 border-r-2 w-full h-full">
+            {serviceList && serviceList.map(({ title, anchor, services }) => (<>
+                <button className={` p-1 my-3 text-lg font-bold border border-aqua-green hover:bg-aqua-green hover:text-white ${highlightedService === anchor ? 'bg-aqua-green text-white': 'bg-none text-aqua-green'}`} onClick={()=>{scrollToSection(title)}}><h2 >{title}</h2></button>
+                <ul key={`${title} list-item `} className="list-disc text-aqua-blue mx-3">
                     {
                         services && services.map((service: Service) => (
-                            <li key={`${service.title} list item`} className={`font-bold ${highlightedService === service.anchor ? 'bg-aqua-blue text-white': 'bg-none text-aqua-blue'}`}><button onClick={()=>{scrollToSection(service.title)}}><h3 key={`${service.title}`}>{service.title}</h3></button></li>
+                            <li key={`${service.title} list item`} className="group" ><button className="w-full" onClick={()=>{scrollToSection(service.title)}}><h3 className={` max-w-max p-1 text-left font-bold group-hover:bg-aqua-blue group-hover:text-white ${highlightedService === service.anchor ? 'bg-aqua-blue text-white': 'bg-none text-aqua-blue'}`} key={`${service.title}`}>{service.title}</h3></button></li>
                         ))
                     }
-                </ul>))}
+                </ul></>))}
         </div>
     )
 }

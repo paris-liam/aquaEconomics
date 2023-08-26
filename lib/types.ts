@@ -77,5 +77,3 @@ export type SlideInfo = {
 export type ContentfulRichText = {
     json: Document
 }
-
-export 

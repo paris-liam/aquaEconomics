@@ -3,7 +3,6 @@ import ContentfulImage from "../ContentfulImage";
 import { Hero } from "../hero"; 
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer';
 import { customMarkdownOptions } from "@/lib/constants";
-import { TopographyBackgroundOne } from "@/lib/svgs/TopographyBackgroundOne";
 
 export const AboutSlide = ({ contentImagesCollection, title, description }: SlideInfo) => {
 
@@ -21,7 +20,7 @@ export const AboutSlide = ({ contentImagesCollection, title, description }: Slid
     ))}
     </div>
     <div className='md:ml-10 text-container md:w-1/2 md:my-10'>
-        <h2 className='my-5 text-4xl leading-8 uppercase text-aqua-green'>{title}</h2>
+        <h2 className='my-5 text-3xl md:text-4xl leading-8 uppercase text-aqua-green'>{title}</h2>
         <div className='my-5 text-xl unreset'>
         {
                 documentToReactComponents(description.json, customMarkdownOptions(description))

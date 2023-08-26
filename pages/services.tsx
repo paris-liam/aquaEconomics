@@ -34,7 +34,7 @@ export default function Services({ slideInfo, services }: { slideInfo: SlideInfo
         }
       })
     }
-    
+
     const setFixedServiceList = () => {
       //@ts-ignore
       setServiceListFixed(!!(serviceSlideRef && serviceSlideRef.current && window.scrollY > (serviceSlideRef.current.offsetTop + serviceSlideRef.current.offsetHeight)))
@@ -53,30 +53,33 @@ export default function Services({ slideInfo, services }: { slideInfo: SlideInfo
     <Layout>
       <div ref={serviceSlideRef}><ServicesSlide slideInfo={slideInfo} serviceCategories={services}></ServicesSlide></div>
       <div className='relative flex flex-row mr-20 ml-10 my-10 gap-4'>
-        <div className={`w-auto hidden md:block ${serviceListFixed ? 'fixed top-10 left-10': ''}`}><ServiceList highlightedService={highlightedService} serviceList={services}></ServiceList></div>
-        <div className='ml-auto w-full md:w-3/5 lg:w-4/5 rich-text unreset'>
+        <div className={`w-auto hidden md:block ${serviceListFixed ? 'fixed top-5 left-5 bottom-0' : ''}`}><ServiceList highlightedService={highlightedService} serviceList={services}></ServiceList></div>
+        <div className='ml-auto w-full md:w-3/4 md:pl-20 lg:pl-16 lg:w-4/5 xl:w-11/12 rich-text unreset'>
           {services && services.map(({ title, categoryDescription, services, anchor }) => (
             <div
               //@ts-ignore
               ref={serviceSectionRefs[anchor]} key={anchor} id={anchor}>
               <h2>{title}</h2>
-              <div>
+              <hr />
+              <div className='  pl-6 '>
                 {
                   documentToReactComponents(categoryDescription.json, customMarkdownOptions(categoryDescription))
                 }
               </div>
               {
                 services && services.map((service: Service) => (
-                  <div
+                  <div className='pl-6'
                     //@ts-ignore
                     ref={serviceSectionRefs[service.anchor]} id={service.anchor} key={service.anchor}>
                     <h2>{service.title}</h2>
-                    <div>
+                    <hr />
+                    <div className='mt-3'>
                       {
                         documentToReactComponents(service?.description?.json, customMarkdownOptions(service?.description))
                       }
 
                     </div>
+                    <hr />
                   </div>
                 ))
               }</div>
