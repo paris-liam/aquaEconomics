@@ -24,7 +24,7 @@ export const Card = ({ className, icon, title, body, link, bgColor, titleColor, 
                 documentToReactComponents(body.json, customMarkdownOptions(body))
       }
       </div>
-      <button className={`py-1 px-3 grow-0 text-l hidden md:block border border-white ${bgColor === 'white' ? 'bg-aqua-green text-white' : bgColor === 'aqua-green' ? 'bg-white text-aqua-green' : 'bg-aqua-blue text-white'}`}>Read more 
+      <button className={`p-3 grow-0 text-center hidden md:block border border-white ${bgColor === 'white' ? 'bg-aqua-green text-white' : bgColor === 'aqua-green' ? 'bg-white text-aqua-green' : 'text-aqua-blue bg-white'}`}>Read more 
       {<Arrow className={'w-2 inline-block mb-1 mt-1 ml-2 rotate-40'}></Arrow>}</button>
     </div></Link>)
 }

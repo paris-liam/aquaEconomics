@@ -27,7 +27,7 @@ export const ServicesSlide = ({ slideInfo, serviceCategories }: ServicesSlidePro
     alt={backgroundImage?.title}
   />}>
     <div className='flex flex-col w-full h-full'>
-      <h2 className='m-10 text-4xl font-bold leading-8 text-center text-white uppercase md:text-left md:text-6xl'>
+      <h2 className='m-10 text-4xl font-bold leading-8 text-center text-white uppercase md:text-6xl'>
         {title}
       </h2>
       <div className='flex flex-col items-center w-full h-auto m-auto md:items-stretch md:flex-row justify-evenly '>
