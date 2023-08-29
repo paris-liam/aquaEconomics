@@ -162,3 +162,11 @@ export const SERVICES_GRAPHQL_FIELDS = `query {
     }
   }
 }`
+
+export const QUOTES_GRAPHQL_FIELDS = `query {
+  quoteCollection {
+    items {
+      quote
+    }
+  }
+}`

@@ -3,6 +3,8 @@
 @tailwind utilities;
 
 @import 'unreset.css';
+@import './embla/base.css';
+@import './embla/embla.css';
 
 .smooth-scroll {
     scroll-behavior: smooth;

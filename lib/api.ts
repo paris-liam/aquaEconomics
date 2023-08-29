@@ -1,6 +1,6 @@
 import { Url } from "next/dist/shared/lib/router/router";
-import { PROJECT_GRAPHQL_FIELDS, SERVICES_GRAPHQL_FIELDS, SERVICE_CATEGORIES_GRAPHQL_FIELDS, SLIDE_GRAPHQL_FIELDS, SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS } from "./queries";
-import { ContentfulProjectsPayload, ContentfulServiceCategoriesPayload, ContentfulServicesPayload, ContentfulSlideInfoPayload, Project, ServiceCategory, SlideInfo } from "./types";
+import { PROJECT_GRAPHQL_FIELDS, SERVICES_GRAPHQL_FIELDS, SERVICE_CATEGORIES_GRAPHQL_FIELDS, SLIDE_GRAPHQL_FIELDS, SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS, QUOTES_GRAPHQL_FIELDS } from "./queries";
+import { ContentfulProjectsPayload, ContentfulQuotePayload, ContentfulServiceCategoriesPayload, ContentfulServicesPayload, ContentfulSlideInfoPayload, Project, Quote, Quotes, ServiceCategory, SlideInfo } from "./types";
 import { formatLink } from "./constants";
 
 async function fetchGraphQL(query: string) {
@@ -63,6 +63,12 @@ function extractCategories(categories: ContentfulServiceCategoriesPayload) {
   })
 }
 
+
+function extractQuotes (quotes: ContentfulQuotePayload) {
+  
+  return quotes.data.quoteCollection.items.map((quote: Quote) => quote.quote)
+}
+
 export async function getSlideInfo(slideID: string): Promise<SlideInfo> {
   const slideInfoPayload = await fetchGraphQL(SLIDE_GRAPHQL_FIELDS(slideID))
   return extractSlideInfo(slideInfoPayload)
@@ -93,6 +99,14 @@ export async function getAllProjects(): Promise<Project[]> {
     }
   }`)
   return extractProjectEntries(entries)
+}
+
+export async function getAllQuotes(): Promise<Quote[]> {
+
+  const quotes = await fetchGraphQL(QUOTES_GRAPHQL_FIELDS)
+
+
+  return extractQuotes(quotes)
 }
 
 export async function getHighlightedProjects(): Promise<Project[]> {

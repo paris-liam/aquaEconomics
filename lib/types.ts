@@ -31,6 +31,14 @@ export type ContentfulServiceCategoriesPayload = {
     }
 }
 
+export type ContentfulQuotePayload = {
+    data: {
+        quoteCollection: {
+            items: Quote[]
+        }
+    }
+}
+
 export type ContentfulSlideInfoPayload = {
     data: {
         slideInfo: SlideInfo
@@ -76,4 +84,8 @@ export type SlideInfo = {
 
 export type ContentfulRichText = {
     json: Document
+}
+
+export type Quote = {
+    quote: string;
 }
