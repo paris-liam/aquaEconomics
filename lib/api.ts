@@ -1,6 +1,6 @@
 import { Url } from "next/dist/shared/lib/router/router";
 import { PROJECT_GRAPHQL_FIELDS, SERVICES_GRAPHQL_FIELDS, SERVICE_CATEGORIES_GRAPHQL_FIELDS, SLIDE_GRAPHQL_FIELDS, SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS, QUOTES_GRAPHQL_FIELDS } from "./queries";
-import { ContentfulProjectsPayload, ContentfulQuotePayload, ContentfulServiceCategoriesPayload, ContentfulServicesPayload, ContentfulSlideInfoPayload, Project, Quote, Quotes, ServiceCategory, SlideInfo } from "./types";
+import { ContentfulProjectsPayload, ContentfulQuotePayload, ContentfulServiceCategoriesPayload, ContentfulServicesPayload, ContentfulSlideInfoPayload, Project, Quote, ServiceCategory, SlideInfo } from "./types";
 import { formatLink } from "./constants";
 
 async function fetchGraphQL(query: string) {
