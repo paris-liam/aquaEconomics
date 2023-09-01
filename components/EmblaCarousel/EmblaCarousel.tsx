@@ -13,7 +13,7 @@ import Autoplay from 'embla-carousel-autoplay'
 
 
 
-const EmblaCarousel = ({quotes, options}:{quotes:string[]; options: EmblaOptionsType}) => {
+const EmblaCarousel = ({ quotes, options }: { quotes: string[]; options: EmblaOptionsType }) => {
   const [emblaRef, emblaApi] = useEmblaCarousel(options, [Autoplay()])
 
   const onButtonClick = useCallback((emblaApi: EmblaCarouselType) => {
@@ -35,34 +35,34 @@ const EmblaCarousel = ({quotes, options}:{quotes:string[]; options: EmblaOptions
   } = usePrevNextButtons(emblaApi, onButtonClick)
 
   return (
-    <div className="embla">
-      <div className="embla__viewport" ref={emblaRef}>
-        <div className="embla__container">
-          {quotes.map((quote, index) => (
-            <div className="embla__slide" key={index}>
-              <h3>{quote}</h3>
-            </div>
-          ))}
-        </div>
-      </div>
-
+    <>
       <div className="embla__buttons">
         <PrevButton onClick={onPrevButtonClick} disabled={prevBtnDisabled} />
         <NextButton onClick={onNextButtonClick} disabled={nextBtnDisabled} />
       </div>
+      <div className="embla">
+        <div className="embla__viewport" ref={emblaRef}>
+          <div className="embla__container">
+            {quotes.map((quote, index) => (
+              <div className="embla__slide" key={index}>
+                <h3 className='text-center font-sans m-auto text-2xl px-10'>{quote}</h3>
+              </div>
+            ))}
+          </div>
+        </div>
 
-      <div className="embla__dots">
-        {scrollSnaps.map((_, index) => (
-          <DotButton
-            key={index}
-            onClick={() => onDotButtonClick(index)}
-            className={'embla__dot'.concat(
-              index === selectedIndex ? ' embla__dot--selected' : ''
-            )}
-          />
-        ))}
-      </div>
-    </div>
+        <div className="embla__dots">
+          {scrollSnaps.map((_, index) => (
+            <DotButton
+              key={index}
+              onClick={() => onDotButtonClick(index)}
+              className={'embla__dot'.concat(
+                index === selectedIndex ? ' embla__dot--selected' : ''
+              )}
+            />
+          ))}
+        </div>
+      </div></>
   )
 }
 

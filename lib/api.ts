@@ -65,8 +65,10 @@ function extractCategories(categories: ContentfulServiceCategoriesPayload) {
 
 
 function extractQuotes (quotes: ContentfulQuotePayload) {
-  
-  return quotes.data.quoteCollection.items.map((quote: Quote) => quote.quote)
+  quotes.data.quoteCollection.items[2].quote.substring(0,300);
+
+
+  return quotes.data.quoteCollection.items.map((quote: Quote) => `" ${quote.quote.substring(0,300)}${quote.quote.length >= 300 ? '...':''} "`)
 }
 
 export async function getSlideInfo(slideID: string): Promise<SlideInfo> {
@@ -101,7 +103,7 @@ export async function getAllProjects(): Promise<Project[]> {
   return extractProjectEntries(entries)
 }
 
-export async function getAllQuotes(): Promise<Quote[]> {
+export async function getAllQuotes(): Promise<string[]> {
 
   const quotes = await fetchGraphQL(QUOTES_GRAPHQL_FIELDS)
 
