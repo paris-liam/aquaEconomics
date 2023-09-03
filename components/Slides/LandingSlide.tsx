@@ -32,7 +32,7 @@ export const LandingSlide = ({scrollRef, slideInfo}: LandingSlideProps) => {
   <div>
     <button onClick={() => executeScroll(scrollRef)} className='p-5 my-10 font-sans font-bold text-white bg-aqua-green'>
       Learn More
-      {<Arrow className={'w-2 inline-block mb-2 mt-1 ml-2'}></Arrow>}
+      {<Arrow className={'rotate-180 w-2 inline-block mb-2 mt-1 ml-2'}></Arrow>}
     </button>
   </div>
 </div>

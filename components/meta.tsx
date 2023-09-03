@@ -36,7 +36,7 @@ export default function Meta() {
         name="description"
         content={`A statically generated blog example using Next.js and ${CMS_NAME}.`}
       />
-      <meta property="og:image" content={'/favicon/favicon.ico'} />
+      <meta property="og:image" content={'/favicon/logo.png'} />
       <title>Aqua Economics</title>
     </Head>
   )

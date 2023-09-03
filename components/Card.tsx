@@ -16,7 +16,7 @@ type CardComponentProps = {
 }
 
 export const Card = ({ className, icon, title, body, link, bgColor, titleColor, }: CardComponentProps) => {
-  return (<Link className={`block w-8/12 md:w-1/4 ${className}`} href={link}><div className={`flex flex-col items-start w-full h-auto p-3 mx-auto mb-4 shadow-2xl md:h-full`}>
+  return (<Link className={`block w-8/12 md:w-1/4 ${className}`} href={link}><div className={`flex flex-col items-start w-full h-auto p-3 mx-auto  shadow-2xl md:h-full`}>
       <div className="w-1/3 h-full m-auto md:w-1/2 md:mb-5 grow-0">{icon}</div>
       <h3 className='w-full text-xl text-center grow-0 md:text-left md:mb-2'>{title}</h3>
       <div className='hidden grow md:block md:mb-2'>
