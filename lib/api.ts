@@ -18,10 +18,12 @@ async function fetchGraphQL(query: string) {
 }
 
 function extractProjectEntries(projectPayload: ContentfulProjectsPayload): Project[] {
-  return projectPayload.data?.projectCollection?.items?.map((project) => {
-    const { title, headerImage, highlight } = project;
+  return projectPayload.data?.projectCollection?.items?.sort(
+  function(x,y){ return !!(x?.highlightVericalPostion) ? -1 : !!(y?.highlightVericalPostion) ? 1 : 0; })
+  .map((project) => {
+    const { title, headerImage, highlight, highlightVericalPostion } = project;
     return {
-      title, headerImage, highlight
+      title, headerImage, highlight, highlightVericalPostion
     }
   })
 }

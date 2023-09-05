@@ -51,6 +51,7 @@ export type Project = {
     description?: ContentfulRichText
     headerImage: ContentfulImagePayload;
     highlight: boolean;
+    highlightVericalPostion: boolean;
     shortSummary?: ContentfulRichText;
     date?: string;
 }

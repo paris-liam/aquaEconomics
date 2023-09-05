@@ -1,6 +1,7 @@
 export const PROJECT_GRAPHQL_FIELDS = (singleProject:boolean) =>  `      
   title
-  highlight 
+  highlight
+  highlightVericalPostion
   headerImage {
     title
     description
