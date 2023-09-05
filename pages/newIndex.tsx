@@ -18,7 +18,7 @@ type IndexPageProps = {
   contactSlideInfo: SlideInfo;
   highlightedProjects: Project[];
   serviceCategories: ServiceCategory[];
-  quotes: Quote[];
+  quotes: string[];
 }
 export default function Index({ landingSlideInfo,
   aboutSlideInfo,
