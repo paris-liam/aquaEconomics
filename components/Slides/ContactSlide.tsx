@@ -21,17 +21,16 @@ export const ContactSlide = ({backgroundImage, title }: SlideInfo) => (<Hero cla
     data-netlify="true"
     netlify-honeypot="bot-field"
     className="flex flex-col w-3/4 p-4 h-3/4">
-      <input type="hidden" name="form-name" value="contact" />
       <div className="flex flex-col md:flex-row justify-between h-auto gap-5 grow-0">
         <div className="flex flex-col w-full md:w-1/3"><label className="text-lg text-white">Name</label>
-          <input type='name' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
+          <input type='name' name='name' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
           <div className="flex flex-col w-full md:w-1/3"><label className="text-lg text-white">Email</label>
-          <input type='name' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
+          <input type='name' name='email' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
           <div className="flex flex-col w-full md:w-1/3"><label className="text-lg text-white">Number</label>
-          <input type='name' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
+          <input type='name' name='phone' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
       </div>
       <div className="flex flex-col mt-4 grow"><label className="text-lg text-white">Message</label>
-        <textarea className="w-full p-1 text-white bg-transparent border border-white grow" ></textarea></div>
+        <textarea name='message' className="w-full p-1 text-white bg-transparent border border-white grow" ></textarea></div>
       <div className="mt-4"><input type='submit' value='Send Message' className="w-full p-3 text-white bg-aqua-green"/></div>
     </form>
   </div>
