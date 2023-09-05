@@ -18,7 +18,8 @@ export const ContactSlide = ({backgroundImage, title }: SlideInfo) => (<Hero cla
     name="contact"
     form-name="contact"
     method="POST"
-    data-netlify='true'
+    data-netlify="true"
+    netlify-honeypot="bot-field"
     className="flex flex-col w-3/4 p-4 h-3/4">
       <input type="hidden" name="form-name" value="contact" />
       <div className="flex flex-col md:flex-row justify-between h-auto gap-5 grow-0">
