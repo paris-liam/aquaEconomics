@@ -2,7 +2,7 @@ import { Service, ServiceCategory, SlideInfo } from '@/lib/types'
 import Layout from '../components/layout'
 import { ServicesSlide } from '../components/Slides/ServicesSlide'
 import { getAllServices, getSlideInfo } from '../lib/api'
-import { SERVICES_SLIDE_CONTENT_ID, customMarkdownOptions } from '../lib/constants'
+import { SERVICES_SLIDE_CONTENT_ID, aquaBlueHex, aquaGreenHex, customMarkdownOptions } from '../lib/constants'
 import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import ServiceList from '@/components/ServiceList'
 import { useEffect, useRef, useState } from 'react'
@@ -53,14 +53,13 @@ export default function Services({ slideInfo, services }: { slideInfo: SlideInfo
     <Layout>
       <div ref={serviceSlideRef}><ServicesSlide slideInfo={slideInfo} serviceCategories={services}></ServicesSlide></div>
       <div className='relative flex flex-row mr-20 ml-10 my-10 gap-4'>
-        <div className={` hidden md:block ${serviceListFixed ? 'w-auto fixed top-5 left-5 bottom-0' : 'w-1/3'}`}><ServiceList highlightedService={highlightedService} serviceList={services}></ServiceList></div>
-        <div className='ml-auto w-full md:w-3/4 md:pl-20 lg:pl-48 lg:w-4/5 xl:w-11/12 rich-text unreset'>
+        <div className={` hidden md:block  ${serviceListFixed ? 'ml-5 mt-5 fixed top-32 left-5 bottom-0 w-72' : 'w-80'}`}><ServiceList highlightedService={highlightedService} serviceList={services}></ServiceList></div>
+        <div className={`ml-auto w-full md:w-3/4 lg:w-4/5 xl:w-11/12 rich-text unreset ${serviceListFixed ? 'pl-44  mt-44':''}`}>
           {services && services.map(({ title, categoryDescription, services, anchor }) => (
             <div
               //@ts-ignore
               ref={serviceSectionRefs[anchor]} key={anchor} id={anchor}>
-              <h2 style={{fontSize: '1.87rem'}}>{title}</h2>
-              <hr />
+              <h2 style={{fontSize: '2.5rem', margin: '2rem 0', color: aquaGreenHex, borderBottom: `1px solid`}}>{title}</h2>
               <div className='pl-6'>
                 {
                   documentToReactComponents(categoryDescription.json, customMarkdownOptions(categoryDescription))
@@ -71,15 +70,13 @@ export default function Services({ slideInfo, services }: { slideInfo: SlideInfo
                   <div className='pl-6'
                     //@ts-ignore
                     ref={serviceSectionRefs[service.anchor]} id={service.anchor} key={service.anchor}>
-                    <h2 style={{fontSize: '1.25rem'}}>{service.title}</h2>
-                    <hr />
-                    <div className='mt-3'>
+                    <h2 style={{fontSize: '1.75rem', margin: '1.5rem 0', color: aquaBlueHex, borderBottom: `1px solid`}}>{service.title}</h2>
+                    <div className=' ml-12 mt-3'>
                       {
                         documentToReactComponents(service?.description?.json, customMarkdownOptions(service?.description))
                       }
 
                     </div>
-                    <hr />
                   </div>
                 ))
               }</div>
