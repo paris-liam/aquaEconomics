@@ -15,10 +15,11 @@ export const ContactSlide = ({backgroundImage, title }: SlideInfo) => (<Hero cla
       {title || ''}
     </h2>
     <form 
-    name="contact"
-    method="POST"
-    data-netlify="true"
-    className="flex flex-col w-3/4 p-4 h-3/4">
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      className="flex flex-col w-3/4 p-4 h-3/4">
+      <input type="hidden" name="form-name" value="contact" />
       <div className="flex flex-col md:flex-row justify-between h-auto gap-5 grow-0">
         <div className="flex flex-col w-full md:w-1/3"><label className="text-lg text-white">Name</label>
           <input type='name' name='name' className="w-full p-1 text-white bg-transparent border border-white"></input></div>
