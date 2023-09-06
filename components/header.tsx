@@ -4,8 +4,10 @@ import Link from 'next/link';
 
 export const headerNavLinkClasses = `block px-4 py-2 text-lg font-sans font-bold hover:text-aqua-green`
 export const Header = () => {
+  const [headerHeight, setHeaderHeight] = useState(0);
+  const [stickyHeader, setStickyheader] = useState(false);
 
-  const [hideNav, sethideNav] = useState(false); 
+  const [hideNav, sethideNav] = useState(true); 
 
   const [isMobile, setIsMobile] = useState(true)
 
@@ -13,25 +15,41 @@ export const Header = () => {
   
   useEffect(() => {
     const mobileBreakPoint = headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth  <= 700
+    setHeaderHeight(headerRef.current?.offsetHeight || 0);
     setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700));
     sethideNav(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
     const onResize = () => {
       setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
     }
 
+    const onScroll = () => {
+      setStickyheader(window.scrollY >= headerHeight)
+    }
+
     window.addEventListener("resize", onResize);
+    window.addEventListener("scroll", onScroll);
 
     return () => {
       window.removeEventListener("resize", onResize);
+      window.removeEventListener("scroll", onScroll);
+
     }
   },[]) 
+
+  useEffect(() => {
+    const mainElem = document.querySelector('main');
+    if(mainElem) {
+      mainElem.style.marginTop = `${stickyHeader ? headerHeight : 0}px`
+    }
+  }, [stickyHeader])
+
 
   useEffect(() => {
     sethideNav(isMobile)
   },[isMobile])
 
   return (
-    <header ref={headerRef}>
+    <header ref={headerRef} className={`bg-white z-50 ${stickyHeader ? 'fixed top-0 left-0 right-0' : ''}`}>
       <nav
         className="flex flex-wrap items-center justify-between w-full px-6 py-6 text-lg text-gray-700 bg-white md:px-30"
       >
