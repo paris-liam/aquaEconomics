@@ -30,7 +30,7 @@ export default function Index({ landingSlideInfo,
   quotes  }: IndexPageProps) {
   const aboutSlide = useRef(null)
   return (
-    <Layout>
+    <Layout aboutSlideRef={aboutSlide}>
       <LandingSlide  slideInfo={landingSlideInfo} scrollRef={aboutSlide}></LandingSlide>
       <span ref={aboutSlide}><AboutSlide {...aboutSlideInfo} ></AboutSlide></span>
       <QuoteContainer quotes={quotes}></QuoteContainer>

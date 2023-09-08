@@ -1,3 +1,4 @@
+import { Header } from "@/components/header";
 import { Logo } from "@/lib/svgs/Logo";
 
 

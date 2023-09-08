@@ -1,38 +1,58 @@
-import { useEffect, useState, useRef, RefObject } from 'react';
+import { useEffect, useState, useRef, RefObject, MutableRefObject } from 'react';
 import { Logo } from '../lib/svgs/Logo'
 import Link from 'next/link';
+import { WaveBackground } from './WaveBackground';
+import { useRouter } from 'next/router';
 
 export const headerNavLinkClasses = `block px-4 py-2 text-lg font-sans font-bold hover:text-aqua-green`
-export const Header = () => {
+export const Header = ({aboutSlideRef}: {aboutSlideRef?: MutableRefObject<null>}) => {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [stickyHeader, setStickyheader] = useState(false);
-
+  const [showWaves, setShowWaves] = useState(true)
   const [hideNav, sethideNav] = useState(true); 
 
   const [isMobile, setIsMobile] = useState(true)
 
   const headerRef: RefObject<HTMLElement> = useRef(null)
-  
+  const router = useRouter();
+
   useEffect(() => {
+    
     const mobileBreakPoint = headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth  <= 700
     setHeaderHeight(headerRef.current?.offsetHeight || 0);
     setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700));
     sethideNav(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
+    
     const onResize = () => {
       setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
     }
 
-    const onScroll = () => {
+    const onScrollSticky = () => {
       setStickyheader(window.scrollY >= headerHeight)
+
+    }
+
+    const onScrollWaves = () => {
+      //@ts-ignore
+      setShowWaves(!!(aboutSlideRef && aboutSlideRef.current && window.scrollY > aboutSlideRef.current.offsetTop))
+    
     }
 
     window.addEventListener("resize", onResize);
-    window.addEventListener("scroll", onScroll);
+    window.addEventListener("scroll", onScrollSticky);
+    console.warn(router.asPath);
+    if(router.asPath === '/newIndex') {
+      setShowWaves(false);
+      window.addEventListener("scroll", onScrollWaves);
+    }
 
     return () => {
       window.removeEventListener("resize", onResize);
-      window.removeEventListener("scroll", onScroll);
-
+      window.removeEventListener("scroll", onScrollSticky);
+      if(router.asPath === '/newIndex') {
+        window.removeEventListener("scroll", onScrollWaves);
+  
+      }
     }
   },[]) 
 
@@ -49,9 +69,12 @@ export const Header = () => {
   },[isMobile])
 
   return (
-    <header ref={headerRef} className={`bg-white z-50 ${stickyHeader ? 'fixed top-0 left-0 right-0' : ''}`}>
+    <header ref={headerRef} className={`${ !isMobile ? 'overflow-hidden' : ''} bg-white z-30 ${stickyHeader ? 'fixed top-0 left-0 right-0' : 'relative'}`}>
+        {!isMobile &&(<div className='absolute w-full h-full h-min-4 z-40'>
+          <WaveBackground show={showWaves} header={true}></WaveBackground>
+        </div>)}
       <nav
-        className="flex flex-wrap items-center justify-between w-full px-6 py-6 text-lg text-gray-700 bg-white md:px-30"
+        className={`flex relative overflow-hidden flex-wrap items-center justify-between w-full px-6 py-6 text-lg z-50 text-gray-700 ${isMobile ? `bg-white` : `bg-transparent`} md:px-30`}
       >
         <div>
           <Link href="/">
