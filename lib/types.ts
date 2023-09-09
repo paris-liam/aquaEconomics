@@ -90,3 +90,18 @@ export type ContentfulRichText = {
 export type Quote = {
     quote: string;
 }
+
+export type TeamMember = {
+    name: string;
+    role: string;
+    headshot: ContentfulImagePayload;
+    description: ContentfulRichText
+}
+
+export type ContentfulTeamMemberPayload = {
+    data: {
+        teamMemberCollection: {
+            items: TeamMember[];
+        }
+    }
+}

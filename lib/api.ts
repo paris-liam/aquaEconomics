@@ -1,6 +1,6 @@
 import { Url } from "next/dist/shared/lib/router/router";
-import { PROJECT_GRAPHQL_FIELDS, SERVICES_GRAPHQL_FIELDS, SERVICE_CATEGORIES_GRAPHQL_FIELDS, SLIDE_GRAPHQL_FIELDS, SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS, QUOTES_GRAPHQL_FIELDS } from "./queries";
-import { ContentfulProjectsPayload, ContentfulQuotePayload, ContentfulServiceCategoriesPayload, ContentfulServicesPayload, ContentfulSlideInfoPayload, Project, Quote, ServiceCategory, SlideInfo } from "./types";
+import { PROJECT_GRAPHQL_FIELDS, SERVICES_GRAPHQL_FIELDS, SERVICE_CATEGORIES_GRAPHQL_FIELDS, SLIDE_GRAPHQL_FIELDS, SEARCH_PRODUCT_BY_TITLE_GRAPHQL_FIELDS, QUOTES_GRAPHQL_FIELDS, TEAM_MEMBERS_GRAPHQL_FIELDS } from "./queries";
+import { ContentfulProjectsPayload, ContentfulQuotePayload, ContentfulServiceCategoriesPayload, ContentfulServicesPayload, ContentfulSlideInfoPayload, ContentfulTeamMemberPayload, Project, Quote, ServiceCategory, SlideInfo, TeamMember } from "./types";
 import { formatLink } from "./constants";
 
 async function fetchGraphQL(query: string) {
@@ -69,8 +69,14 @@ function extractCategories(categories: ContentfulServiceCategoriesPayload) {
 function extractQuotes (quotes: ContentfulQuotePayload) {
   quotes.data.quoteCollection.items[2].quote.substring(0,300);
 
-
   return quotes.data.quoteCollection.items.map((quote: Quote) => `" ${quote.quote.substring(0,300)}${quote.quote.length >= 300 ? '...':''} "`)
+}
+
+function extractTeamMembers(teamMembers: ContentfulTeamMemberPayload) {
+  return teamMembers?.data?.teamMemberCollection?.items?.map((teamMember: TeamMember) => {
+    const { name, role, description, headshot } = teamMember
+    return { name, role, description, headshot }
+  }) 
 }
 
 export async function getSlideInfo(slideID: string): Promise<SlideInfo> {
@@ -111,6 +117,12 @@ export async function getAllQuotes(): Promise<string[]> {
 
 
   return extractQuotes(quotes)
+}
+
+export async function getAllTeamMembers(): Promise<TeamMember[]> {
+  const teamMembers = await fetchGraphQL(TEAM_MEMBERS_GRAPHQL_FIELDS)
+
+  return extractTeamMembers(teamMembers)
 }
 
 export async function getHighlightedProjects(): Promise<Project[]> {

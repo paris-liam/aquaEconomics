@@ -171,3 +171,22 @@ export const QUOTES_GRAPHQL_FIELDS = `query {
     }
   }
 }`
+
+export const TEAM_MEMBERS_GRAPHQL_FIELDS = `query {
+  teamMemberCollection {
+    items {
+      headshot {
+        title
+        description
+        url
+        width
+        height
+      }
+      description {
+        json
+      }
+      name
+      role
+    }
+  }
+}`

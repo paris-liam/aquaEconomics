@@ -8,7 +8,7 @@ const Ocean = styled.div`
   left:0;
 `
 const Wave = styled.div`
-  background: url('https://s3-us-west-2.amazonaws.com/s.cdpn.io/85486/wave.svg') repeat-x; 
+  background: url('images/wave-lines.svg') repeat-x; 
   position: absolute;
   ${
     //@ts-ignore
@@ -20,6 +20,7 @@ const Wave = styled.div`
   transform: translate3d(0, 0, 0);
   
   &:nth-of-type(2) {
+    background: url('images/wave.svg') repeat-x;
     ${
       //@ts-ignore
       ({header, show}) => header ?  `
