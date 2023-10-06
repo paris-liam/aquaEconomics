@@ -9,7 +9,7 @@ import { documentToReactComponents } from '@contentful/rich-text-react-renderer'
 import { useState } from 'react'
 
 export default function About({ slideInfo, quotes, teamMembers }: { slideInfo: SlideInfo; quotes: string[]; teamMembers: TeamMember[] }) {
-  
+
   const [highlightedMember, setHighlightedMember] = useState({} as TeamMember)
   const [showHighlight, setShowHighlight] = useState(false);
 
@@ -20,15 +20,15 @@ export default function About({ slideInfo, quotes, teamMembers }: { slideInfo: S
       setShowHighlight(true)
     }
   }
-  
+
   return (
     <>
       <Layout>
         <AboutSlide {...slideInfo}></AboutSlide>
         <QuoteContainer quotes={quotes}></QuoteContainer>
-        <ul>
-          {teamMembers.map((teamMember) => 
-          (<li onClick={() => {setHighlightedMember(teamMember)}}>
+        <ul className='grid w-4/5 grid-cols-3 gap-6 m-auto h-3/4 '>
+          {teamMembers.map((teamMember) =>
+          (<li key={teamMember.name} onClick={() => { setHighlightedMember(teamMember) }}>
             <ContentfulImage
               key={`teammate ${teamMember.name}`}
               src={teamMember.headshot.url}
@@ -39,11 +39,6 @@ export default function About({ slideInfo, quotes, teamMembers }: { slideInfo: S
             />
             <h3>{teamMember.name}</h3>
             <h4>{teamMember.role}</h4>
-            <div>
-            {
-                documentToReactComponents(teamMember.description.json, customMarkdownOptions(teamMember.description))
-            }
-            </div>
           </li>))}
         </ul>
         <div className='teamMemberModal'>
