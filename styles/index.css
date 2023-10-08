@@ -10,8 +10,18 @@
     scroll-behavior: smooth;
 }
 
+.scroll-lock {
+    overflow: hidden;
+}
+
 .project-gallery-first-link {
     grid-row: 1 / 3;
+}
+
+.team-mate-item:hover {
+    .team-mate-overlay {
+        opacity: .6;
+    }
 }
 
 .project-link:hover {

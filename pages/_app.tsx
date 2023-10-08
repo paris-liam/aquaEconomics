@@ -1,15 +1,15 @@
 import '../styles/index.css'
-import {Roboto_Condensed} from "next/font/google"
+import { Roboto_Condensed } from "next/font/google"
 import { Open_Sans } from "next/font/google"
 
 const roboto = Roboto_Condensed({
-  subsets:['latin'],
+  subsets: ['latin'],
   variable: '--font-roboto',
-  weight: ['300','400','700'],
+  weight: ['300', '400', '700'],
   style: ['italic', 'normal']
 })
 const open_sans = Open_Sans({
-  subsets:['latin'],
+  subsets: ['latin'],
   variable: '--font-open-sans',
   weight: ["300", "400", "700", "500", "600", "800"],
   style: ['italic', 'normal']
