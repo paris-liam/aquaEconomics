@@ -5,11 +5,11 @@ import { WaveBackground } from './WaveBackground';
 import { useRouter } from 'next/router';
 
 export const headerNavLinkClasses = `block px-4 py-2 text-lg font-sans font-bold hover:text-aqua-green`
-export const Header = ({aboutSlideRef}: {aboutSlideRef?: MutableRefObject<null>}) => {
+export const Header = ({ aboutSlideRef }: { aboutSlideRef?: MutableRefObject<null> }) => {
   const [headerHeight, setHeaderHeight] = useState(0);
   const [stickyHeader, setStickyheader] = useState(false);
   const [showWaves, setShowWaves] = useState(true)
-  const [hideNav, sethideNav] = useState(true); 
+  const [hideNav, sethideNav] = useState(true);
 
   const [isMobile, setIsMobile] = useState(true)
 
@@ -17,12 +17,12 @@ export const Header = ({aboutSlideRef}: {aboutSlideRef?: MutableRefObject<null>}
   const router = useRouter();
 
   useEffect(() => {
-    
-    const mobileBreakPoint = headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth  <= 700
+
+    const mobileBreakPoint = headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700
     setHeaderHeight(headerRef.current?.offsetHeight || 0);
     setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700));
     sethideNav(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
-    
+
     const onResize = () => {
       setIsMobile(!!(headerRef?.current?.offsetWidth && headerRef?.current?.offsetWidth <= 700))
     }
@@ -35,13 +35,13 @@ export const Header = ({aboutSlideRef}: {aboutSlideRef?: MutableRefObject<null>}
     const onScrollWaves = () => {
       //@ts-ignore
       setShowWaves(!!(aboutSlideRef && aboutSlideRef.current && window.scrollY > aboutSlideRef.current.offsetTop))
-    
+
     }
 
     window.addEventListener("resize", onResize);
     window.addEventListener("scroll", onScrollSticky);
     console.warn(router.asPath);
-    if(router.asPath === '/newIndex') {
+    if (router.asPath === '/') {
       setShowWaves(false);
       window.addEventListener("scroll", onScrollWaves);
     }
@@ -49,16 +49,16 @@ export const Header = ({aboutSlideRef}: {aboutSlideRef?: MutableRefObject<null>}
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("scroll", onScrollSticky);
-      if(router.asPath === '/newIndex') {
+      if (router.asPath === '/') {
         window.removeEventListener("scroll", onScrollWaves);
-  
+
       }
     }
-  },[]) 
+  }, [])
 
   useEffect(() => {
     const mainElem = document.querySelector('main');
-    if(mainElem) {
+    if (mainElem) {
       mainElem.style.marginTop = `${stickyHeader ? headerHeight : 0}px`
     }
   }, [stickyHeader])
@@ -66,13 +66,13 @@ export const Header = ({aboutSlideRef}: {aboutSlideRef?: MutableRefObject<null>}
 
   useEffect(() => {
     sethideNav(isMobile)
-  },[isMobile])
+  }, [isMobile])
 
   return (
-    <header ref={headerRef} className={`${ !isMobile ? 'overflow-hidden' : ''} bg-white z-30 ${stickyHeader ? 'fixed top-0 left-0 right-0' : 'relative'}`}>
-        {!isMobile &&(<div className='absolute w-full h-full h-min-4 z-40'>
-          <WaveBackground show={showWaves} header={true}></WaveBackground>
-        </div>)}
+    <header ref={headerRef} className={`${!isMobile ? 'overflow-hidden' : ''} bg-white z-30 ${stickyHeader ? 'fixed top-0 left-0 right-0' : 'relative'}`}>
+      {!isMobile && (<div className='absolute w-full h-full h-min-4 z-40'>
+        <WaveBackground show={showWaves} header={true}></WaveBackground>
+      </div>)}
       <nav
         className={`flex relative overflow-hidden flex-wrap items-center justify-between w-full px-6 py-6 text-lg z-50 text-gray-700 ${isMobile ? `bg-white` : `bg-transparent`} md:px-30`}
       >
@@ -99,18 +99,21 @@ export const Header = ({aboutSlideRef}: {aboutSlideRef?: MutableRefObject<null>}
           />
         </svg>
 
-        <div style={{'height': !isMobile ? '100%' : (hideNav && isMobile ? '0px' : '13rem')}} className={`transition-all duration-500 overflow-hidden block w-full md:flex md:items-center md:w-auto`} id="menu">
+        <div style={{ 'height': !isMobile ? '100%' : (hideNav && isMobile ? '0px' : '13rem') }} className={`transition-all duration-500 overflow-hidden block w-full md:flex md:items-center md:w-auto`} id="menu">
           <ul
             className="pt-4 text-base text-black-700 text-bold md:flex md:justify-between md:pt-0"
           >
             <li>
-              <Link className={headerNavLinkClasses} href="/about">About Us</Link>
+              <Link className={headerNavLinkClasses} href="/">Home</Link>
             </li>
             <li>
+              <Link className={headerNavLinkClasses} href="/#about"> {/* href="/about" */}About Us</Link>
+            </li>
+            {           /* <li>
               <Link className={headerNavLinkClasses} href="/projects">Projects</Link>
-            </li>
+            </li>*/}
             <li>
-              <Link className={headerNavLinkClasses} href="/services">Services</Link>
+              {/*<Link className={headerNavLinkClasses} href="/services">Services</Link>*/}
               <Link className={`${headerNavLinkClasses} md:hidden`} href="contact">Contact Us</Link>
             </li>
           </ul>
