@@ -17,14 +17,14 @@ type CardComponentProps = {
 
 export const Card = ({ className, icon, title, body, link, bgColor, titleColor, }: CardComponentProps) => {
   return (<Link className={`block w-8/12 md:w-1/4 ${className}`} href={link}><div className={`flex flex-col items-start w-full h-auto p-3 mx-auto  shadow-2xl md:h-full`}>
-      <div className="w-1/3 h-full m-auto md:w-1/2 md:mb-5 grow-0">{icon}</div>
-      <h3 className='w-full text-xl text-center grow-0 md:text-left md:mb-2'>{title}</h3>
-      <div className='hidden grow md:block md:mb-2'>
+    <div className="w-1/3 h-full m-auto md:w-1/2 md:mb-5 grow-0">{icon}</div>
+    <h3 className='w-full text-xl text-center grow-0 md:text-left md:mb-2'>{title}</h3>
+    <div className='hidden grow md:block md:mb-2'>
       {
-                documentToReactComponents(body.json, customMarkdownOptions(body))
+        documentToReactComponents(body.json, customMarkdownOptions(body))
       }
-      </div>
-      <button className={`p-3 grow-0 text-center hidden md:block border border-white ${bgColor === 'white' ? 'bg-aqua-green text-white' : bgColor === 'aqua-green' ? 'bg-white text-aqua-green' : 'text-aqua-blue bg-white'}`}>Read more 
+    </div>
+    <button className={`p-3 grow-0 text-center hidden md:block border border-white ${bgColor === 'white' ? 'bg-aqua-green text-white' : bgColor === 'aqua-green' ? 'bg-white text-aqua-green' : 'text-aqua-blue bg-white'}`}>Learn more
       {<Arrow className={'w-2 inline-block mb-1 mt-1 ml-2 rotate-40'}></Arrow>}</button>
-    </div></Link>)
+  </div></Link>)
 }
